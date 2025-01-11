@@ -11,6 +11,13 @@ import {
 import Editor from "@monaco-editor/react"
 import { Code2, ChevronDown, Play, Send } from "lucide-react"
 import { useState } from "react"
+import * as monaco from 'monaco-editor'
+
+declare global {
+  interface Window {
+    monaco: typeof monaco;
+  }
+}
 
 const LANGUAGES = [
   { label: "JavaScript", value: "javascript" },
@@ -20,13 +27,15 @@ const LANGUAGES = [
   { label: "C++", value: "cpp" },
 ] as const
 
+type Language = (typeof LANGUAGES)[number]
+
 interface CodeEditorProps {
   onRun?: (code: string) => void
   onSubmit?: (code: string) => void
 }
 
 export function CodeEditor({ onRun, onSubmit }: CodeEditorProps) {
-  const [language, setLanguage] = useState(LANGUAGES[0])
+  const [language, setLanguage] = useState<Language>(LANGUAGES[0])
 
   const handleRun = () => {
     const editor = window.monaco?.editor.getModels()[0]

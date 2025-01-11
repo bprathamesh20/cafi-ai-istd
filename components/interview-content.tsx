@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import Link from "next/link"
 
 const interviews = [
   {
@@ -57,9 +58,11 @@ export function InterviewContent() {
               </p>
             </CardContent>
             <CardFooter>
-              <Button variant="outline" className="w-full">
-                {interview.status === "Upcoming" ? "Prepare" : "View Feedback"}
-              </Button>
+              <Link href={`/interview`}>
+                <Button variant="outline" className="w-full">
+                  {interview.status === "Upcoming" ? "Prepare" : "View Feedback"}
+                </Button>
+              </Link>
             </CardFooter>
           </Card>
         ))}

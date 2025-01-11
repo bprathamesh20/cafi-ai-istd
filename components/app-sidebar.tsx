@@ -29,8 +29,8 @@ export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarHeader className="border-b px-6 py-4 flex flex-row items-center">
-        <Image src={Logo} alt="Cafi Logo" className="mr-2 h-8 w-8" width={32} height={32} />
-        <h2 className="text-lg font-semibold">Cafi AI</h2>
+        <Image src={Logo} alt="Cafi Logo" className="mr-1 h-8 w-8" width={32} height={32} />
+        <h2 className="text-xl font-bold">cafi AI</h2>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>

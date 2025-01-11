@@ -37,37 +37,37 @@ export default function Page() {
     updateConnectionDetails(connectionDetailsData)
   }, [])
 
-//   if (!connectionDetails) {
-//     return (
-//       <div className="h-screen flex items-center justify-center bg-[var(--lk-bg)] p-4" data-lk-theme="default">
-//         <Card className="max-w-lg w-full rounded-lg border-0 shadow-lg">
-//           <CardHeader>
-//             <CardTitle>Welcome to AI Interview Assistant</CardTitle>
-//             <CardDescription>Before you begin:</CardDescription>
-//           </CardHeader>
-//           <CardContent className="space-y-4">
-//             <div className="space-y-2">
-//               <div className="flex items-center gap-2">
-//                 <Mic className="h-5 w-5" />
-//                 <p>Please ensure your microphone is connected and working</p>
-//               </div>
-//               <div className="flex items-center gap-2">
-//                 <Volume2 className="h-5 w-5" />
-//                 <p>Check that your speakers or headphones are working</p>
-//               </div>
-//             </div>
-//             <Button 
-//               className="w-full"
-//               size="lg"
-//               onClick={onConnectButtonClicked}
-//             >
-//               Start Interview
-//             </Button>
-//           </CardContent>
-//         </Card>
-//       </div>
-//     )
-//   }
+  if (!connectionDetails) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-[var(--lk-bg)] p-4" data-lk-theme="default">
+        <Card className="max-w-lg w-full rounded-lg border-0 shadow-lg">
+          <CardHeader>
+            <CardTitle>Welcome to AI Interview Assistant</CardTitle>
+            <CardDescription>Before you begin:</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <Mic className="h-5 w-5" />
+                <p>Please ensure your microphone is connected and working</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <Volume2 className="h-5 w-5" />
+                <p>Check that your speakers or headphones are working</p>
+              </div>
+            </div>
+            <Button 
+              className="w-full"
+              size="lg"
+              onClick={onConnectButtonClicked}
+            >
+              Start Interview
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
 
   return (
     <div className="h-full">
@@ -131,12 +131,12 @@ function SimpleVoiceAssistant(props: {
     props.onStateChange(state)
   }, [props, state])
   return (
-    <Card className="h-[200px] w-full rounded-lg">
+    <Card className="h-[200px] w-full rounded-lg border-none shadow-none">
       <BarVisualizer
         state={state}
         barCount={5}
         trackRef={audioTrack}
-        className="agent-visualizer"
+        className="agent-visualizer bg-transparent"
         options={{ minHeight: 16 }}
       />
     </Card>
