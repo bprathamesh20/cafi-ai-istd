@@ -8,14 +8,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import Editor from "@monaco-editor/react"
+import Editor, { Monaco } from "@monaco-editor/react"
 import { Code2, ChevronDown, Play, Send } from "lucide-react"
 import { useState } from "react"
-import * as monaco from 'monaco-editor'
 
 declare global {
   interface Window {
-    monaco: typeof monaco;
+    monaco: Monaco;
   }
 }
 
