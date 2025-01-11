@@ -10,7 +10,7 @@ import {
   AgentState,
   DisconnectButton,
 } from "@livekit/components-react"
-import { Car, Mic, Volume2 } from 'lucide-react'
+import { Mic, Volume2 } from 'lucide-react'
 import { useCallback, useEffect, useState } from "react"
 import { MediaDeviceFailure } from "livekit-client"
 import type { ConnectionDetails } from "@/app/api/connection-details/route"
