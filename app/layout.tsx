@@ -1,4 +1,6 @@
 import "@livekit/components-styles";
+import { StackProvider, StackTheme } from "@stackframe/stack";
+import { stackServerApp } from "../stack";
 import "./globals.css";
 import { Public_Sans } from "next/font/google";
 
@@ -14,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`dark h-full ${publicSans400.className}`}>
-      <body className="h-full">{children}</body>
+      <body className="h-full"><StackProvider app={stackServerApp}><StackTheme>{children}</StackTheme></StackProvider></body>
     </html>
   );
 }

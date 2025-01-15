@@ -1,3 +1,4 @@
+import { stackServerApp } from "@/stack";
 import {
   AccessToken,
   AccessTokenOptions,
@@ -21,6 +22,8 @@ export type ConnectionDetails = {
 };
 
 export async function GET() {
+  const app = stackServerApp
+  const user = await app.getUser()
   try {
     if (LIVEKIT_URL === undefined) {
       throw new Error("LIVEKIT_URL is not defined");
@@ -33,10 +36,10 @@ export async function GET() {
     }
 
     // Generate participant token
-    const participantIdentity = `voice_assistant_user_${Math.floor(Math.random() * 10_000)}`;
+    const participantIdentity = `${user?.id}_123`;
     const roomName = `voice_assistant_room_${Math.floor(Math.random() * 10_000)}`;
     const participantToken = await createParticipantToken(
-      { identity: participantIdentity },
+      { identity: participantIdentity},
       roomName,
     );
 

@@ -55,7 +55,7 @@ export default function ResultsPage() {
             </CardContent>
             <CardFooter>
               <Link href={`/dashboard/results/${interview.id}`}>
-              <Button variant="outline" className="w-full">
+              <Button variant="cta" className="w-full">
                View Report
               </Button>
               </Link>

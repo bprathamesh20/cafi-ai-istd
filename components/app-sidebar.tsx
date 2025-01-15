@@ -2,6 +2,8 @@
 
 import { ClipboardList, BarChart2, User } from 'lucide-react'
 import { usePathname } from "next/navigation"
+import { UserButton } from '@stackframe/stack';
+import { useUser } from "@stackframe/stack"
 import Logo from '@/assets/cafi-logo.svg'
 import Link from "next/link"
 import Image from "next/image"
@@ -25,7 +27,7 @@ const sidebarItems = [
 
 export function AppSidebar() {
   const pathname = usePathname()
-
+  const user = useUser();
   return (
     <Sidebar>
       <SidebarHeader className="border-b px-6 py-4 flex flex-row items-center">
@@ -59,9 +61,9 @@ export function AppSidebar() {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link href="/dashboard/profile">
-                    <User className="mr-2 h-4 w-4" />
-                    Profile Settings
+                  <Link href="/handler/account-settings#profile">
+                    <UserButton />
+                    {user?.displayName}
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
