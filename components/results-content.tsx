@@ -8,21 +8,23 @@ import type { Interview } from "@/types/types";
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
-export function InterviewContent() {
+export function ResultsContent() {
   const userId = '6787cd9a0e002f395ecbe997';
   const { data: interviews, error } = useSWR<Interview[]>(`/api/interviews?user_id=${userId}`, fetcher);
 
+
+  const filterInterviews = interviews?.filter((interview)=> interview.status == 'completed')
+
   if (error) return <div>Failed to load interviews</div>;
-  if (!interviews) return <div>Loading interviews...</div>;
+  if (!filterInterviews) return <div>Loading interviews...</div>;
 
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold">Interviews</h1>
-        <Button variant='cta'>Schedule New Interview</Button>
+        <h1 className="text-3xl font-bold">Results</h1>
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {interviews.map((interview) => (
+        {filterInterviews.map((interview) => (
           <Card key={interview._id.toString()}>
             <CardHeader>
               <CardTitle>{interview.company_id ? interview.company_id.toString() : 'Cafi AI DEMO'}</CardTitle>
@@ -39,21 +41,11 @@ export function InterviewContent() {
               </p>
             </CardContent>
             <CardFooter>
-              {interview.status === "completed" && 
               <Link href={`/dashboard/results/${interview._id.toString()}`}>
                 <Button variant="outline" className="w-full">
-                  View Result
+                  View Feedback
                 </Button>
               </Link>
-              }
-
-              {interview.status != "completed" && 
-              <Link href={`/interview/${interview._id.toString()}`}>
-                <Button variant="outline" className="w-full">
-                  Start interview
-                </Button>
-              </Link>
-              }
             </CardFooter>
           </Card>
         ))}

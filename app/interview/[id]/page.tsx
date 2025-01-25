@@ -21,7 +21,14 @@ import { Button } from "@/components/ui/button"
 import { CodeEditor } from "@/components/code-editor"
 
 
-export default function Page() {
+export default function Page({
+  params,
+}: {
+  params: { id: string }
+}) {
+  const id = params.id
+
+    
   const [connectionDetails, updateConnectionDetails] = useState<
     ConnectionDetails | undefined
   >(undefined)
