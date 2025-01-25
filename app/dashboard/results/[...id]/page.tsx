@@ -3,7 +3,7 @@
 import { DashboardShell } from "@/components/dashboard-shell"
 import InterviewReport from "@/components/interview-report"
 import { Button } from "@/components/ui/button"
-import { Interview, Result } from "@/types/types"
+import {  Result } from "@/types/types"
 import Link from "next/link"
 import useSWR from "swr"
 

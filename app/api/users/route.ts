@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import clientPromise from '../../../lib/mongodb';
 import type { Interview } from '../../../types/types';
 
@@ -16,7 +16,7 @@ export async function GET() {
 }
 
 
-export async function POST(req:NextRequest) {
+export async function POST() {
     
     try {
       const client = await clientPromise;

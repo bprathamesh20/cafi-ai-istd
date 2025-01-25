@@ -27,6 +27,7 @@ export default function Page({
   params: { id: string }
 }) {
   const id = params.id
+  console.log(id)
 
     
   const [connectionDetails, updateConnectionDetails] = useState<

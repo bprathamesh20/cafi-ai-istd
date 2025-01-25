@@ -1,6 +1,6 @@
 "use client"
 
-import { ClipboardList, BarChart2, User } from 'lucide-react'
+import { ClipboardList, BarChart2 } from 'lucide-react'
 import { usePathname } from "next/navigation"
 import { UserButton } from '@stackframe/stack';
 import { useUser } from "@stackframe/stack"
