@@ -27,7 +27,6 @@ export default function Page({
   params: { id: string }
 }) {
   const id = params.id
-  console.log(id)
 
     
   const [connectionDetails, updateConnectionDetails] = useState<
@@ -38,6 +37,7 @@ export default function Page({
   const onConnectButtonClicked = useCallback(async () => {
     const url = new URL(
       process.env.NEXT_PUBLIC_CONN_DETAILS_ENDPOINT ?? "/api/connection-details",
+      
       window.location.origin
     )
     const response = await fetch(url.toString())
