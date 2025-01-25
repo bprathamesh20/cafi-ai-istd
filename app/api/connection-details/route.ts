@@ -4,7 +4,7 @@ import {
   AccessTokenOptions,
   VideoGrant,
 } from "livekit-server-sdk";
-import { NextRequest, NextResponse } from "next/server";
+import {  NextResponse } from "next/server";
 
 // NOTE: you are expected to define the following environment variables in `.env.local`:
 const API_KEY = process.env.LIVEKIT_API_KEY;
@@ -21,12 +21,12 @@ export type ConnectionDetails = {
   participantToken: string;
 };
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   const app = stackServerApp
   const user = await app.getUser()
 
 
-  const interview_id = req.body
+
   try {
     if (LIVEKIT_URL === undefined) {
       throw new Error("LIVEKIT_URL is not defined");
