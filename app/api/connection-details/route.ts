@@ -21,11 +21,10 @@ export type ConnectionDetails = {
   participantToken: string;
 };
 
-export async function GET() {
-  const app = stackServerApp
-  const user = await app.getUser()
-
-
+export async function POST(req: Request) {
+  const app = stackServerApp;
+  const user = await app.getUser();
+  const { interview_id } = await req.json();
 
   try {
     if (LIVEKIT_URL === undefined) {
@@ -39,7 +38,7 @@ export async function GET() {
     }
 
     // Generate participant token
-    const participantIdentity = `${user?.id}_123`;
+    const participantIdentity = `${user?.id}_${interview_id}`;
     const roomName = `voice_assistant_room_${Math.floor(Math.random() * 10_000)}`;
     const participantToken = await createParticipantToken(
       { identity: participantIdentity},

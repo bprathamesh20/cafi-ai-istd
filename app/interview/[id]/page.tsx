@@ -26,8 +26,7 @@ export default function Page({
 }: {
   params: { id: string }
 }) {
-  const id = params.id
-  console.log(id)
+  const interview_id = params.id
     
   const [connectionDetails, updateConnectionDetails] = useState<
     ConnectionDetails | undefined
@@ -35,12 +34,13 @@ export default function Page({
   const [agentState, setAgentState] = useState<AgentState>("disconnected")
 
   const onConnectButtonClicked = useCallback(async () => {
-    const url = new URL(
-      process.env.NEXT_PUBLIC_CONN_DETAILS_ENDPOINT ?? "/api/connection-details",
-
-      window.location.origin
-    )
-    const response = await fetch(url.toString())
+    const response = await fetch(`${window.location.origin}/api/connection-details`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ interview_id: interview_id }),
+    })
     const connectionDetailsData = await response.json()
     updateConnectionDetails(connectionDetailsData)
   }, [])

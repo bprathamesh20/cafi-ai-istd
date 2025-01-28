@@ -5,10 +5,11 @@ import { ObjectId } from 'mongodb';
 // User Entity
 interface User {
     _id: ObjectId;
+    auth0id: string;
     name: string;
     email: string;
-    password: string; // Hashed password
-    role?: string; // Optional: "candidate", "admin", etc.
+    password: string; 
+    role?: string; 
     created_at: Date;
     updated_at: Date;
   }
