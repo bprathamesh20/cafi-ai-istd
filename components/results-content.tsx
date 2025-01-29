@@ -5,11 +5,13 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import Link from "next/link";
 import useSWR from 'swr';
 import type { Interview } from "@/types/types";
+import { useUser } from "@stackframe/stack";
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 export function ResultsContent() {
-  const userId = '6787cd9a0e002f395ecbe997';
+  const user = useUser()
+  const userId = user?.id
   const { data: interviews, error } = useSWR<Interview[]>(`/api/interviews?user_id=${userId}`, fetcher);
 
 

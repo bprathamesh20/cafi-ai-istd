@@ -28,9 +28,10 @@ export async function POST(request: Request) {
                 return NextResponse.json({ status: 'exists', user: doubleCheck });
             }
 
+            const userObjectId = new ObjectId()
             // Create new user if they don't exist
             const newUser = {
-                _id: new ObjectId(),
+                _id: userObjectId,
                 auth0id,
                 name: displayName || '',
                 email: auth0id,
@@ -38,12 +39,29 @@ export async function POST(request: Request) {
                 updated_at: new Date()
             };
 
+            
+
             // Use updateOne with upsert instead of insertOne to prevent duplicates
             const result = await usersCollection.updateOne(
                 { auth0id },
                 { $setOnInsert: newUser },
                 { upsert: true }
             );
+
+            const interviewsCollection = db.collection('interviews');
+
+            const demoInterview = {
+                _id: new ObjectId(),
+                user_id: new ObjectId(userObjectId), 
+                question_set_id: new ObjectId("6787cd980e002f395ecbe993"),
+                status: "scheduled",
+                start_time: new Date("2025-01-15T15:00:42.719+00:00"),
+                created_at: new Date("2025-01-15T15:00:42.719+00:00"),
+                updated_at: new Date("2025-01-15T15:00:42.719+00:00"),
+                position: "Software Engineer"
+            };
+
+            await interviewsCollection.insertOne(demoInterview);
 
             console.log('API: User creation result:', result);
             return NextResponse.json({ 
