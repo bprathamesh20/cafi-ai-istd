@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import Editor, { Monaco } from "@monaco-editor/react"
-import { Code2, ChevronDown, Play, Send } from "lucide-react"
+import { Code2, ChevronDown, Play, Send, Loader2 } from "lucide-react"
 import { useState } from "react"
 
 declare global {
@@ -35,11 +35,48 @@ interface CodeEditorProps {
 
 export function CodeEditor({ onRun, onSubmit }: CodeEditorProps) {
   const [language, setLanguage] = useState<Language>(LANGUAGES[0])
+  const [isExecuting, setIsExecuting] = useState(false)
+  const [output, setOutput] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
-  const handleRun = () => {
+  const handleRun = async () => {
     const editor = window.monaco?.editor.getModels()[0]
-    if (editor && onRun) {
-      onRun(editor.getValue())
+    if (!editor) return
+
+    setIsExecuting(true)
+    setOutput(null)
+    setError(null)
+
+    try {
+      const response = await fetch('/api/execute', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          language: language.value,
+          code: editor.getValue(),
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to execute code')
+      }
+
+      setOutput(data.output || data.stdout)
+      if (data.stderr) {
+        setError(data.stderr)
+      }
+
+      if (onRun) {
+        onRun(editor.getValue())
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred')
+    } finally {
+      setIsExecuting(false)
     }
   }
 
@@ -75,7 +112,7 @@ export function CodeEditor({ onRun, onSubmit }: CodeEditorProps) {
       </div>
       <div className="flex-1 min-h-0">
         <Editor
-          height="100%"
+          height="60%"
           defaultLanguage={language.value}
           defaultValue={`// Write your ${language.label} code here`}
           language={language.value}
@@ -90,15 +127,30 @@ export function CodeEditor({ onRun, onSubmit }: CodeEditorProps) {
             automaticLayout: true,
           }}
         />
+        <div className="h-40 p-4 bg-black text-white font-mono text-sm overflow-auto">
+          {isExecuting && <p>Executing code...</p>}
+          {output && <pre className="text-green-400">{output}</pre>}
+          {error && <pre className="text-red-400">{error}</pre>}
+        </div>
       </div>
       <div className="flex justify-end gap-2 p-2 border-t">
         <Button 
           variant="outline" 
           onClick={handleRun}
           className="gap-2"
+          disabled={isExecuting}
         >
-          <Play className="h-4 w-4" />
-          Run
+          {isExecuting ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Running...
+            </>
+          ) : (
+            <>
+              <Play className="h-4 w-4" />
+              Run
+            </>
+          )}
         </Button>
         <Button 
           onClick={handleSubmit}

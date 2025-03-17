@@ -19,7 +19,7 @@ interface User {
     _id: ObjectId;
     text: string;
     type: string; 
-    question_set_id: ObjectId; 
+    question_set_id: string; 
     model_answer: string;
     difficulty?: string; 
     tags?: string[]; 
@@ -56,6 +56,7 @@ interface User {
     _id: ObjectId;
     interview_id: ObjectId; // Reference to Interview
     question_id: ObjectId; // Reference to Question
+    question_text: string;
     text: string; // User's answer text
     audio_url?: string; // Optional: URL to audio recording
     video_url?: string; // Optional: URL to video recording
