@@ -1,17 +1,18 @@
 import { NextResponse } from 'next/server';
 import clientPromise from '../../../lib/mongodb';
-import type { Interview } from '../../../types/types';
+import type { User } from '../../../types/types';
 
 export async function GET() {
   try {
     const client = await clientPromise;
     const db = client.db('cafi_db');
-    const collection = db.collection<Interview>('users');
+    const collection = db.collection<User>('users');
 
-    const Interview = await collection.find({}).toArray();
-    return NextResponse.json(Interview, { status: 200 });
+    const users = await collection.find({}).toArray();
+    return NextResponse.json(users, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ message: 'Something went wrong', error }, { status: 500 });
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    return NextResponse.json({ message: 'Something went wrong', error: errorMessage }, { status: 500 });
   }
 }
 
@@ -21,11 +22,12 @@ export async function POST() {
     try {
       const client = await clientPromise;
       const db = client.db('cafi_db');
-      const collection = db.collection<Interview>('users');
+      const collection = db.collection<User>('users');
   
-      const Interview = await collection.find({}).toArray();
-      return NextResponse.json(Interview, { status: 200 });
+      const users = await collection.find({}).toArray();
+      return NextResponse.json(users, { status: 200 });
     } catch (error) {
-      return NextResponse.json({ message: 'Something went wrong', error }, { status: 500 });
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      return NextResponse.json({ message: 'Something went wrong', error: errorMessage }, { status: 500 });
     }
   }

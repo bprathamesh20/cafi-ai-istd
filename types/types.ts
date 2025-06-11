@@ -19,7 +19,7 @@ interface User {
     _id: ObjectId;
     text: string;
     type: string; 
-    question_set_id: string; 
+    question_set_id: ObjectId; 
     model_answer: string;
     difficulty?: string; 
     tags?: string[]; 
@@ -54,13 +54,12 @@ interface User {
   // Answer Entity
   interface Answer {
     _id: ObjectId;
-    interview_id: ObjectId; // Reference to Interview
-    question_id: ObjectId; // Reference to Question
-    question_text: string;
-    text: string; // User's answer text
-    audio_url?: string; // Optional: URL to audio recording
-    video_url?: string; // Optional: URL to video recording
-    created_at: Date;
+    user_id: string;
+    interview_id: string; // Reference to Interview (stored as string)
+    question_number: number;
+    question: string; // The question text
+    answer: string; // User's answer text
+    timestamp: Date;
   }
   
   // Result Entity
@@ -76,7 +75,7 @@ interface User {
       confidence: number;
     };
     questions: {
-      question_id: ObjectId; // Reference to Question
+      question_id: string; // Reference to Question (stored as string)
       question_text: string; // Text of the question
       user_answer: string; // User's answer to the question
       score: number; // Score for this specific question

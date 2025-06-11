@@ -10,15 +10,17 @@ import { useUser } from "@stackframe/stack";
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 export function ResultsContent() {
-  const user = useUser()
-  const userId = user?.id
-  const { data: interviews, error } = useSWR<Interview[]>(`/api/interviews?user_id=${userId}`, fetcher);
-
-
-  const filterInterviews = interviews?.filter((interview)=> interview.status == 'completed')
+  const user = useUser();
+  const userId = user?.id;
+  const { data: interviews, error } = useSWR<Interview[]>(
+    userId ? `/api/interviews?user_id=${userId}` : null,
+    fetcher
+  );
 
   if (error) return <div>Failed to load interviews</div>;
-  if (!filterInterviews) return <div>Loading interviews...</div>;
+  if (!interviews) return <div>Loading interviews...</div>;
+
+  const filterInterviews = interviews?.filter((interview)=> interview.status == 'completed')
 
   return (
     <div className="space-y-6">

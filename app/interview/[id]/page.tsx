@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import {
   LiveKitRoom,
   useVoiceAssistant,
+  useRoomContext,
   BarVisualizer,
   RoomAudioRenderer,
   VoiceAssistantControlBar,
@@ -96,6 +97,8 @@ export default function Page({
           }}
           className="flex-1 grid grid-cols-[1fr_2fr] grid-rows-[1fr_auto] gap-4 p-4"
         >
+          {/* Register RPC to fetch editor code */}
+          <RegisterEditorRpc />
           {/* Top left visualizer */}
           <Card className="p-6 rounded-lg border-0">
             <SimpleVoiceAssistant onStateChange={setAgentState} />
@@ -200,5 +203,18 @@ function onDeviceFailure(error?: MediaDeviceFailure) {
   alert(
     "Error acquiring camera or microphone permissions. Please make sure you grant the necessary permissions in your browser and reload the tab"
   )
+}
+
+// Component to register RPC method for retrieving editor code
+function RegisterEditorRpc() {
+  const { localParticipant } = useRoomContext();
+  useEffect(() => {
+    if (!localParticipant) return;
+    (localParticipant as any).registerRpcMethod("getEditorCode", async () => {
+      const code = window.monaco?.editor.getModels()[0]?.getValue() ?? "";
+      return code;
+    });
+  }, [localParticipant]);
+  return null;
 }
 
