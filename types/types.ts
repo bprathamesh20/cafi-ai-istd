@@ -75,7 +75,8 @@ interface User {
       confidence: number;
     };
     questions: {
-      question_id: string; // Reference to Question (stored as string)
+      question_id: string; // Reference to Question number (stored as string)
+      answer_id?: string; // Retrospective extension: serialized Answer._id
       question_text: string; // Text of the question
       user_answer: string; // User's answer to the question
       score: number; // Score for this specific question
