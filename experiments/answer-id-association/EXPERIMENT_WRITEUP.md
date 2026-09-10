@@ -80,16 +80,21 @@ Mocked DB handlers confirm invalid association never inserts results or marks in
 
 ### Experiment D — live model (retrospective)
 
-**Ran:** 10 September 2026 (partial completion due to API quota).
+#### Prior partial run (superseded)
 
-**Model:** `gemini-2.5-flash` via `@ai-sdk/google` `generateObject`. Historical deployment used `gemini-2.5-pro-preview-05-06`; substitution documented — **does not reproduce June 2025 deployment**.
+**Date:** 10 September 2026. **Model:** `gemini-2.5-flash`. **Outcome:** 10/10 baseline API success, **5/10** revised API success (5 failed on free-tier quota). Archived at `experiment_d_results_2.5-flash_partial.json`. Does not reproduce June 2025 deployment.
+
+#### Full re-run (authoritative)
+
+**Date:** 10 September 2026. **Model:** `gemini-3.6-flash` via `@ai-sdk/google` `generateObject`. Historical deployment used `gemini-2.5-pro-preview-05-06`; **`gemini-3.6-flash` is a documented substitution** — required because `gemini-2.5-flash` returns 404 for new API keys. **Does not reproduce June 2025 deployment.**
 
 **Design:**
 
 - Same 20-record synthetic fixture as experiments A–C.
-- 10 runs per condition (baseline text schema vs revised ID schema).
+- 10 runs per condition (baseline text schema vs revised ID schema) — **20/20 API calls completed**.
 - Constant generation settings: `temperature: 0`.
-- Prompts recorded in output metadata (`baselineEvaluationSchema` vs `idEvaluationSchema`).
+- Retry policy: up to 6 attempts with exponential backoff (30s base) and 8s inter-call delay on rate-limit/quota errors.
+- Prompts, schemas, and settings recorded in output metadata.
 - Full raw responses and failures logged in `experiment_d_results.json` (secrets scrubbed).
 
 **Command:**
@@ -100,30 +105,29 @@ GOOGLE_GENERATIVE_AI_API_KEY=... npm run experiments:live-d
 
 (Do not commit or log the API key.)
 
-### Experiment D results
+### Experiment D results (full re-run, gemini-3.6-flash)
 
-| Metric | Baseline text (10/10 API ok) | Revised answer-ID (5/10 API ok) |
-|--------|------------------------------|----------------------------------|
-| API failures | 0 | 5 (free-tier quota / rate limit) |
+| Metric | Baseline text (10/10) | Revised answer-ID (10/10) |
+|--------|----------------------|---------------------------|
+| API failures | 0 | 0 |
 | Association rejections | N/A | 0 |
 | Text join failures | 0 | N/A |
 | Silent 0/N/A fallbacks | 0 | 0 |
-| Wording changes (model `question_text` ≠ fixture) | 0 / 200 rows | 0 / 100 rows |
-| Scores preserved through association | 200 / 200 | 100 / 100 |
+| Wording changes (model `question_text` ≠ fixture) | 0 / 200 rows | 0 / 200 rows |
+| Scores preserved through association | 200 / 200 | 200 / 200 |
 | Missing / duplicate / unknown IDs | N/A | 0 |
 
-**Successful revised runs:** 2, 3, 4, 5, 9 — all returned 20/20 questions with exact `answer_id` copies, zero validation rejections, and full score preservation through ID association.
+**Baseline live runs:** On this fixture, `gemini-3.6-flash` echoed exact question text in all 10 runs, yielding zero observed text-join failures. This is a **valid null result** for this model/fixture combination; it does not contradict deterministic failures in experiment A2 (reworded mock output).
 
-**Baseline live runs:** On this fixture, `gemini-2.5-flash` echoed exact question text in all 10 runs, yielding zero observed text-join failures. This is a **valid null result** for this model/fixture combination; it does not contradict deterministic failures in experiment A2 (reworded mock output).
-
-**API failures (revised runs 1, 6, 7, 8, 10):** `generativelanguage.googleapis.com/generate_content_free_tier_requests` quota (limit 20) and transient high-demand errors. Retries after 35s did not succeed. Partial data retained; see `run_logs` in output JSON.
+**Revised live runs:** All 10 runs returned 20/20 questions with exact `answer_id` copies, zero validation rejections, and full score preservation through ID association.
 
 **Interpretation:** Live runs measure structural association under real model output, not grading quality. Score variation across runs is not interpreted as improved grading. ID contract enforcement was not stress-tested live (no duplicate/missing/unknown IDs observed); experiments A4–A6 remain the primary evidence for rejection behavior.
 
 **Outputs:**
 
-- `experiments/answer-id-association/output/experiment_d_results.json`
-- `experiments/answer-id-association/output/experiment_d_summary.csv`
+- `experiments/answer-id-association/output/experiment_d_results.json` (full re-run)
+- `experiments/answer-id-association/output/experiment_d_summary.csv` (full re-run)
+- `experiments/answer-id-association/output/experiment_d_results_2.5-flash_partial.json` (prior partial run archive)
 
 ## Discussion
 
@@ -156,6 +160,6 @@ Code references:
 
 ## Limitations
 
-1. Synthetic mocks for A–C; live model partial for D (5/10 revised runs hit API quota).
+1. Synthetic mocks for A–C; live model full for D re-run (`gemini-3.6-flash`, 10/10 per condition). Prior partial D (`gemini-2.5-flash`, 5/10 revised) archived separately.
 2. Backend agent repo unchanged; cross-service ID serialization not integration-tested.
 3. Manuscript sections on local machine unavailable here — this document is insert-ready for methods/results/discussion.

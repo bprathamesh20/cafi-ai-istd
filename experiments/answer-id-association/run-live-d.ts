@@ -3,6 +3,7 @@ import * as path from 'node:path';
 
 import { generateObject } from 'ai';
 import { google } from '@ai-sdk/google';
+import { z } from 'zod';
 
 import {
   buildBaselineEvaluationPrompt,
@@ -22,13 +23,16 @@ import {
 
 const OUTPUT_DIR = path.join(__dirname, 'output');
 const RUNS_PER_CONDITION = 10;
-const REQUESTED_MODEL = 'gemini-2.5-flash';
+const REQUESTED_MODEL = 'gemini-3.6-flash';
 const DEPLOYMENT_MODEL = 'gemini-2.5-pro-preview-05-06';
+const PRIOR_PARTIAL_MODEL = 'gemini-2.5-flash';
 
 const GENERATION_SETTINGS = {
   temperature: 0,
 };
-const INTER_CALL_DELAY_MS = 5000;
+const INTER_CALL_DELAY_MS = 8000;
+const MAX_ATTEMPTS = 6;
+const BASE_BACKOFF_MS = 30000;
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -52,23 +56,72 @@ function scrubSecrets(value: unknown): unknown {
   return value;
 }
 
-async function resolveModelId(): Promise<{ modelId: string; substitutionNote: string }> {
-  const modelId = REQUESTED_MODEL;
-  return {
-    modelId,
-    substitutionNote: `Used ${REQUESTED_MODEL} instead of historical ${DEPLOYMENT_MODEL}; does not reproduce June 2025 deployment.`,
-  };
+function isRetryableError(message: string): boolean {
+  const lower = message.toLowerCase();
+  return (
+    lower.includes('quota') ||
+    lower.includes('rate limit') ||
+    lower.includes('rate-limit') ||
+    lower.includes('high demand') ||
+    lower.includes('resource exhausted') ||
+    lower.includes('429') ||
+    lower.includes('503') ||
+    lower.includes('try again')
+  );
+}
+
+function parseRetryDelayMs(message: string): number | null {
+  const match = message.match(/retry in ([0-9.]+)s/i);
+  if (!match) {
+    return null;
+  }
+  return Math.ceil(Number(match[1]) * 1000);
+}
+
+async function generateObjectWithRetry<T extends z.ZodTypeAny>(params: {
+  modelId: string;
+  prompt: string;
+  schema: T;
+  label: string;
+}): Promise<{ object: z.infer<T> }> {
+  let lastError = 'Unknown error';
+
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
+    try {
+      return await generateObject({
+        model: google(params.modelId),
+        prompt: params.prompt,
+        schema: params.schema,
+        ...GENERATION_SETTINGS,
+      });
+    } catch (error) {
+      lastError = error instanceof Error ? error.message : String(error);
+      const retryable = isRetryableError(lastError);
+      if (!retryable || attempt === MAX_ATTEMPTS) {
+        throw new Error(lastError);
+      }
+
+      const suggestedDelay = parseRetryDelayMs(lastError);
+      const backoff = suggestedDelay ?? BASE_BACKOFF_MS * attempt;
+      console.log(
+        `${params.label}: attempt ${attempt}/${MAX_ATTEMPTS} failed; backing off ${Math.round(backoff / 1000)}s`,
+      );
+      await sleep(backoff);
+    }
+  }
+
+  throw new Error(lastError);
 }
 
 async function runBaselineCall(modelId: string, runIndex: number) {
   const prompt = buildBaselineEvaluationPrompt(syntheticAnswers);
 
   try {
-    const { object } = await generateObject({
-      model: google(modelId),
+    const { object } = await generateObjectWithRetry({
+      modelId,
       prompt,
       schema: baselineEvaluationSchema,
-      ...GENERATION_SETTINGS,
+      label: `baseline run ${runIndex}`,
     });
 
     return {
@@ -92,11 +145,11 @@ async function runRevisedCall(modelId: string, runIndex: number) {
   const prompt = buildIdEvaluationPrompt(syntheticAnswers);
 
   try {
-    const { object } = await generateObject({
-      model: google(modelId),
+    const { object } = await generateObjectWithRetry({
+      modelId,
       prompt,
       schema: idEvaluationSchema,
-      ...GENERATION_SETTINGS,
+      label: `revised run ${runIndex}`,
     });
 
     return {
@@ -156,6 +209,38 @@ function toCsvSummary(summary: ReturnType<typeof summarizeLiveRuns>): string {
   return [header.join(','), ...rows].join('\n');
 }
 
+function loadPriorPartialSummary():
+  | { model: string; baseline_api_success: number; revised_api_success: number; note: string }
+  | null {
+  const priorPath = path.join(OUTPUT_DIR, 'experiment_d_results.json');
+  if (!fs.existsSync(priorPath)) {
+    return null;
+  }
+
+  try {
+    const prior = JSON.parse(fs.readFileSync(priorPath, 'utf8')) as {
+      metadata?: { model_used?: string };
+      summary?: Array<{ condition: string; runs_api_success: number }>;
+    };
+
+    if (prior.metadata?.model_used !== PRIOR_PARTIAL_MODEL) {
+      return null;
+    }
+
+    const baseline = prior.summary?.find((row) => row.condition === 'baseline_text');
+    const revised = prior.summary?.find((row) => row.condition === 'revised_answer_id');
+
+    return {
+      model: PRIOR_PARTIAL_MODEL,
+      baseline_api_success: baseline?.runs_api_success ?? 0,
+      revised_api_success: revised?.runs_api_success ?? 0,
+      note: 'Prior partial run retained as experiment_d_results_2.5-flash_partial.json before this re-run.',
+    };
+  } catch {
+    return null;
+  }
+}
+
 async function main() {
   if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
     console.error('GOOGLE_GENERATIVE_AI_API_KEY is required for Experiment D.');
@@ -164,7 +249,22 @@ async function main() {
 
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
-  const { modelId, substitutionNote } = await resolveModelId();
+  const priorPartial = loadPriorPartialSummary();
+  const priorResultsPath = path.join(OUTPUT_DIR, 'experiment_d_results.json');
+  if (priorPartial && fs.existsSync(priorResultsPath)) {
+    fs.copyFileSync(
+      priorResultsPath,
+      path.join(OUTPUT_DIR, 'experiment_d_results_2.5-flash_partial.json'),
+    );
+    fs.copyFileSync(
+      path.join(OUTPUT_DIR, 'experiment_d_summary.csv'),
+      path.join(OUTPUT_DIR, 'experiment_d_summary_2.5-flash_partial.csv'),
+    );
+  }
+
+  const modelId = REQUESTED_MODEL;
+  const substitutionNote = `Used ${REQUESTED_MODEL} instead of historical ${DEPLOYMENT_MODEL}; does not reproduce June 2025 deployment. Required for new API keys where ${PRIOR_PARTIAL_MODEL} returns 404.`;
+
   console.log(`Experiment D using model: ${modelId}`);
   console.log(substitutionNote);
 
@@ -212,14 +312,21 @@ async function main() {
   const payload = scrubSecrets({
     metadata: {
       experiment: 'D_live_model',
+      run_label: 'D_rerun_gemini-3.6-flash_full',
       retrospective: true,
       note: 'Live Gemini runs added retrospectively; not part of original June 2025 deployment.',
       historical_deployment_model: DEPLOYMENT_MODEL,
       model_used: modelId,
       model_substitution_note: substitutionNote,
+      prior_partial_run: priorPartial,
       runs_per_condition: RUNS_PER_CONDITION,
       batch_size: syntheticAnswers.length,
       generation_settings: GENERATION_SETTINGS,
+      retry_policy: {
+        max_attempts: MAX_ATTEMPTS,
+        base_backoff_ms: BASE_BACKOFF_MS,
+        inter_call_delay_ms: INTER_CALL_DELAY_MS,
+      },
       baseline_prompt_template: buildBaselineEvaluationPrompt(syntheticAnswers),
       revised_prompt_template: buildIdEvaluationPrompt(syntheticAnswers),
       baseline_schema: 'baselineEvaluationSchema (question_text, no answer_id)',
@@ -242,6 +349,11 @@ async function main() {
   console.log(toCsvSummary(summary));
   console.log(`\nWrote ${path.join(OUTPUT_DIR, 'experiment_d_results.json')}`);
   console.log(`Wrote ${path.join(OUTPUT_DIR, 'experiment_d_summary.csv')}`);
+
+  const failed = allRuns.filter((run) => !run.api_success).length;
+  if (failed > 0) {
+    process.exitCode = 1;
+  }
 }
 
 main().catch((error) => {
