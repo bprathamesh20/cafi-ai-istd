@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "experiments:answer-id": "tsx experiments/answer-id-association/run.ts",
-    "experiments:route-mock": "tsx experiments/answer-id-association/route-mock-test.ts"
+    "experiments:route-mock": "tsx experiments/answer-id-association/route-mock-test.ts",
+    "experiments:live-d": "tsx experiments/answer-id-association/run-live-d.ts"
   },
   "dependencies": {
     "@ai-sdk/google": "^1.2.19",

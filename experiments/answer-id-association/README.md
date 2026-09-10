@@ -10,6 +10,12 @@ npm run experiments:answer-id
 npm run experiments:route-mock
 ```
 
+Optional live model (Experiment D):
+
+```bash
+GOOGLE_GENERATIVE_AI_API_KEY=... npm run experiments:live-d
+```
+
 Outputs:
 
 - `experiments/answer-id-association/output/results.json`
@@ -20,7 +26,7 @@ Outputs:
 - **Experiment A**: six controlled batch cases (20 synthetic answers each)
 - **Experiment B**: identical question text, different answer IDs
 - **Experiment C**: semantic negative control (validator accepts wrong scores)
-- **Experiment D**: not run (no non-production Gemini credentials in this workspace)
+- **Experiment D**: live Gemini (`GOOGLE_GENERATIVE_AI_API_KEY` required; do not commit). Outputs `experiment_d_results.json`, `experiment_d_summary.csv`.
 
 ## Note on original project work
 

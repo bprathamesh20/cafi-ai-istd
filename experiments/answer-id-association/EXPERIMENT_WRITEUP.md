@@ -78,9 +78,52 @@ Association correctness is **structural** (ID/text join). Semantic grading corre
 
 Mocked DB handlers confirm invalid association never inserts results or marks interviews completed; legitimate score `0` persists.
 
-### Experiment D — live model
+### Experiment D — live model (retrospective)
 
-**Not run.** No non-production Gemini API credentials in cloud workspace. Harness is runnable; live evaluation remains optional future work.
+**Ran:** 10 September 2026 (partial completion due to API quota).
+
+**Model:** `gemini-2.5-flash` via `@ai-sdk/google` `generateObject`. Historical deployment used `gemini-2.5-pro-preview-05-06`; substitution documented — **does not reproduce June 2025 deployment**.
+
+**Design:**
+
+- Same 20-record synthetic fixture as experiments A–C.
+- 10 runs per condition (baseline text schema vs revised ID schema).
+- Constant generation settings: `temperature: 0`.
+- Prompts recorded in output metadata (`baselineEvaluationSchema` vs `idEvaluationSchema`).
+- Full raw responses and failures logged in `experiment_d_results.json` (secrets scrubbed).
+
+**Command:**
+
+```bash
+GOOGLE_GENERATIVE_AI_API_KEY=... npm run experiments:live-d
+```
+
+(Do not commit or log the API key.)
+
+### Experiment D results
+
+| Metric | Baseline text (10/10 API ok) | Revised answer-ID (5/10 API ok) |
+|--------|------------------------------|----------------------------------|
+| API failures | 0 | 5 (free-tier quota / rate limit) |
+| Association rejections | N/A | 0 |
+| Text join failures | 0 | N/A |
+| Silent 0/N/A fallbacks | 0 | 0 |
+| Wording changes (model `question_text` ≠ fixture) | 0 / 200 rows | 0 / 100 rows |
+| Scores preserved through association | 200 / 200 | 100 / 100 |
+| Missing / duplicate / unknown IDs | N/A | 0 |
+
+**Successful revised runs:** 2, 3, 4, 5, 9 — all returned 20/20 questions with exact `answer_id` copies, zero validation rejections, and full score preservation through ID association.
+
+**Baseline live runs:** On this fixture, `gemini-2.5-flash` echoed exact question text in all 10 runs, yielding zero observed text-join failures. This is a **valid null result** for this model/fixture combination; it does not contradict deterministic failures in experiment A2 (reworded mock output).
+
+**API failures (revised runs 1, 6, 7, 8, 10):** `generativelanguage.googleapis.com/generate_content_free_tier_requests` quota (limit 20) and transient high-demand errors. Retries after 35s did not succeed. Partial data retained; see `run_logs` in output JSON.
+
+**Interpretation:** Live runs measure structural association under real model output, not grading quality. Score variation across runs is not interpreted as improved grading. ID contract enforcement was not stress-tested live (no duplicate/missing/unknown IDs observed); experiments A4–A6 remain the primary evidence for rejection behavior.
+
+**Outputs:**
+
+- `experiments/answer-id-association/output/experiment_d_results.json`
+- `experiments/answer-id-association/output/experiment_d_summary.csv`
 
 ## Discussion
 
@@ -98,9 +141,10 @@ This does **not** validate fairness, rubric quality, or deployment safety. Scale
 npm install
 npm run experiments:answer-id
 npm run experiments:route-mock
+GOOGLE_GENERATIVE_AI_API_KEY=... npm run experiments:live-d
 ```
 
-Machine-readable outputs: `experiments/answer-id-association/output/results.json`, `results.csv`.
+Machine-readable outputs: `experiments/answer-id-association/output/results.json`, `results.csv`, `experiment_d_results.json`, `experiment_d_summary.csv`.
 
 Code references:
 
@@ -108,9 +152,10 @@ Code references:
 - ID join: `lib/evaluation/id-association.ts`
 - Revised route: `app/api/evaluate/route.ts`
 - Experiment runner: `experiments/answer-id-association/run.ts`
+- Live experiment D: `experiments/answer-id-association/run-live-d.ts`
 
 ## Limitations
 
-1. Synthetic mocks only for A–C; live model drift not measured (D not run).
+1. Synthetic mocks for A–C; live model partial for D (5/10 revised runs hit API quota).
 2. Backend agent repo unchanged; cross-service ID serialization not integration-tested.
 3. Manuscript sections on local machine unavailable here — this document is insert-ready for methods/results/discussion.
