@@ -1,7 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import useSWR from 'swr';
 import { Button } from '@/components/ui/button';
@@ -14,7 +13,6 @@ const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 export default function ViewQuestionSetPage() {
   const params = useParams();
-  const router = useRouter();
   const questionSetId = params.id as string;
 
   const { data: questionSet, error: questionSetError } = useSWR<QuestionSet>(

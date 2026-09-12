@@ -210,7 +210,7 @@ function RegisterEditorRpc() {
   const { localParticipant } = useRoomContext();
   useEffect(() => {
     if (!localParticipant) return;
-    (localParticipant as any).registerRpcMethod("getEditorCode", async () => {
+    localParticipant.registerRpcMethod("getEditorCode", async () => {
       const code = window.monaco?.editor.getModels()[0]?.getValue() ?? "";
       return code;
     });

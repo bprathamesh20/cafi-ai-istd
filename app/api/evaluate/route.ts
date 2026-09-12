@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { ObjectId } from 'mongodb';
+import { Filter, ObjectId } from 'mongodb';
 import { generateObject } from 'ai';
 import { google } from '@ai-sdk/google';
 
@@ -32,10 +32,10 @@ export async function POST(request: NextRequest) {
         interview = await db.collection<Interview>('interviews').findOne({ _id: ObjectId.createFromHexString(interviewId) });
       } catch (error) {
         console.log('Interview ObjectId conversion failed, trying as string:', error);
-        interview = await db.collection<Interview>('interviews').findOne({ _id: interviewId as any });
+        interview = await db.collection<Interview>('interviews').findOne({ _id: interviewId } as Filter<Interview>);
       }
     } else {
-      interview = await db.collection<Interview>('interviews').findOne({ _id: interviewId as any });
+      interview = await db.collection<Interview>('interviews').findOne({ _id: interviewId } as Filter<Interview>);
     }
 
     if (!interview) {
@@ -92,7 +92,7 @@ export async function POST(request: NextRequest) {
 
     const resultToSave: Omit<Result, '_id'> = {
       user_id: interview.user_id,
-      interview_id: interviewId.length === 24 ? ObjectId.createFromHexString(interviewId) : interviewId as any,
+      interview_id: interviewId.length === 24 ? ObjectId.createFromHexString(interviewId) : (interviewId as unknown as ObjectId),
       overall_score: evaluation.overall_score,
       score_breakdown: evaluation.score_breakdown,
       questions: associationResult.questions,
@@ -105,7 +105,7 @@ export async function POST(request: NextRequest) {
 
     const completionTime = new Date();
     const totalQuestions = answers.length;
-    const interviewObjectId = interviewId.length === 24 ? ObjectId.createFromHexString(interviewId) : interviewId as any;
+    const interviewObjectId = interviewId.length === 24 ? ObjectId.createFromHexString(interviewId) : (interviewId as unknown as ObjectId);
 
     await db.collection('interviews').updateOne(
       { _id: interviewObjectId },

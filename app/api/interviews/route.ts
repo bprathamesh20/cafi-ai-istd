@@ -72,7 +72,7 @@ export async function POST(req: NextRequest) {
         updated_at: new Date(),
       }));
       
-      const insertedQuestions = await questionsCollection.insertMany(questionDocs as any[]);
+      const insertedQuestions = await questionsCollection.insertMany(questionDocs as Question[]);
       const insertedQuestionIds = Object.values(insertedQuestions.insertedIds);
 
       await questionSetsCollection.updateOne(

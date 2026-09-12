@@ -59,7 +59,14 @@ export function NewInterviewForm() {
       return;
     }
 
-    const requestBody: any = {
+    const requestBody: {
+      user_id: string;
+      position: string;
+      start_time: Date;
+      status: string;
+      custom_questions?: { text: string; model_answer: string }[];
+      question_set_id?: string | null;
+    } = {
       user_id: selectedUserId,
       position,
       start_time: new Date(),
@@ -86,8 +93,8 @@ export function NewInterviewForm() {
       }
 
       router.push('/dashboard');
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {
       setIsSubmitting(false);
     }
