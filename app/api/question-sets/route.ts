@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import clientPromise from '../../../lib/mongodb';
 import { QuestionSet, Question } from '../../../types/types';
-import { ObjectId } from 'mongodb';
 
 export async function POST(req: NextRequest) {
   try {
@@ -20,7 +19,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Validate that all questions have text
-    const invalidQuestions = questions.filter((q: any) => !q.text || q.text.trim() === '');
+    const invalidQuestions = questions.filter((q: { text?: string }) => !q.text || q.text.trim() === '');
     if (invalidQuestions.length > 0) {
       return NextResponse.json({ message: 'All questions must have text' }, { status: 400 });
     }
@@ -52,7 +51,7 @@ export async function POST(req: NextRequest) {
       updated_at: new Date(),
     }));
 
-    const questionsResult = await questionsCollection.insertMany(questionDocs as any[]);
+    const questionsResult = await questionsCollection.insertMany(questionDocs as Question[]);
     const questionIds = Object.values(questionsResult.insertedIds);
 
     // Update the question set with the question IDs
@@ -78,7 +77,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     const client = await clientPromise;
     const db = client.db('cafi_db');

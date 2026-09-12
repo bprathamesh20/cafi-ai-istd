@@ -1,0 +1,3711 @@
+{
+  "metadata": {
+    "experiment": "D_live_model",
+    "run_label": "D_rerun_gemini-3.6-flash_full",
+    "retrospective": true,
+    "note": "Live Gemini runs added retrospectively; not part of original June 2025 deployment.",
+    "historical_deployment_model": "gemini-2.5-pro-preview-05-06",
+    "model_used": "gemini-3.6-flash",
+    "model_substitution_note": "Used gemini-3.6-flash instead of historical gemini-2.5-pro-preview-05-06; does not reproduce June 2025 deployment. Required for new API keys where gemini-2.5-flash returns 404.",
+    "prior_partial_run": {
+      "model": "gemini-2.5-flash",
+      "baseline_api_success": 10,
+      "revised_api_success": 5,
+      "note": "Prior partial run retained as experiment_d_results_2.5-flash_partial.json before this re-run."
+    },
+    "runs_per_condition": 10,
+    "batch_size": 20,
+    "generation_settings": {
+      "temperature": 0
+    },
+    "retry_policy": {
+      "max_attempts": 6,
+      "base_backoff_ms": 30000,
+      "inter_call_delay_ms": 8000
+    },
+    "baseline_prompt_template": "\n      You are an expert interviewer. Evaluate the candidate's answers for the following questions.\n      Provide a score and feedback for each question, and then an overall score and breakdown.\n      The score should be from 1 to 100.\n\n      also evaluate the candidate's overall performance and provide a feedback for the candidate.\n      if model answer is not provided, then score the candidate's answer based on the question and the answer.\n\n      Questions and Candidate Answers:\n      \n        Question 1: Explain concept 1 in distributed systems.\n        Candidate's Answer: Candidate response for question 1 covering trade-offs and examples.\n      \n\n\n        Question 2: Explain concept 2 in distributed systems.\n        Candidate's Answer: Candidate response for question 2 covering trade-offs and examples.\n      \n\n\n        Question 3: Explain concept 3 in distributed systems.\n        Candidate's Answer: Candidate response for question 3 covering trade-offs and examples.\n      \n\n\n        Question 4: Explain concept 4 in distributed systems.\n        Candidate's Answer: Candidate response for question 4 covering trade-offs and examples.\n      \n\n\n        Question 5: Explain concept 5 in distributed systems.\n        Candidate's Answer: Candidate response for question 5 covering trade-offs and examples.\n      \n\n\n        Question 6: Explain concept 6 in distributed systems.\n        Candidate's Answer: Candidate response for question 6 covering trade-offs and examples.\n      \n\n\n        Question 7: Explain concept 7 in distributed systems.\n        Candidate's Answer: Candidate response for question 7 covering trade-offs and examples.\n      \n\n\n        Question 8: Explain concept 8 in distributed systems.\n        Candidate's Answer: Candidate response for question 8 covering trade-offs and examples.\n      \n\n\n        Question 9: Explain concept 9 in distributed systems.\n        Candidate's Answer: Candidate response for question 9 covering trade-offs and examples.\n      \n\n\n        Question 10: Explain concept 10 in distributed systems.\n        Candidate's Answer: Candidate response for question 10 covering trade-offs and examples.\n      \n\n\n        Question 11: Explain concept 11 in distributed systems.\n        Candidate's Answer: Candidate response for question 11 covering trade-offs and examples.\n      \n\n\n        Question 12: Explain concept 12 in distributed systems.\n        Candidate's Answer: Candidate response for question 12 covering trade-offs and examples.\n      \n\n\n        Question 13: Explain concept 13 in distributed systems.\n        Candidate's Answer: Candidate response for question 13 covering trade-offs and examples.\n      \n\n\n        Question 14: Explain concept 14 in distributed systems.\n        Candidate's Answer: Candidate response for question 14 covering trade-offs and examples.\n      \n\n\n        Question 15: Explain concept 15 in distributed systems.\n        Candidate's Answer: Candidate response for question 15 covering trade-offs and examples.\n      \n\n\n        Question 16: Explain concept 16 in distributed systems.\n        Candidate's Answer: Candidate response for question 16 covering trade-offs and examples.\n      \n\n\n        Question 17: Explain concept 17 in distributed systems.\n        Candidate's Answer: Candidate response for question 17 covering trade-offs and examples.\n      \n\n\n        Question 18: Explain concept 18 in distributed systems.\n        Candidate's Answer: Candidate response for question 18 covering trade-offs and examples.\n      \n\n\n        Question 19: Explain concept 19 in distributed systems.\n        Candidate's Answer: Candidate response for question 19 covering trade-offs and examples.\n      \n\n\n        Question 20: Explain concept 20 in distributed systems.\n        Candidate's Answer: Candidate response for question 20 covering trade-offs and examples.\n      \n    ",
+    "revised_prompt_template": "\n      You are an expert interviewer. Evaluate the candidate's answers for the following questions.\n      Provide a score and feedback for each question, and then an overall score and breakdown.\n      The score should be from 1 to 100.\n\n      also evaluate the candidate's overall performance and provide a feedback for the candidate.\n      if model answer is not provided, then score the candidate's answer based on the question and the answer.\n\n      Each answer has a unique answer_id. You MUST copy each answer_id exactly into your response.\n      Do not invent, omit, or duplicate answer_id values.\n\n      Questions and Candidate Answers:\n      \n        answer_id: 507f1f77bcf86cd79943900a\n        Question 1: Explain concept 1 in distributed systems.\n        Candidate's Answer: Candidate response for question 1 covering trade-offs and examples.\n      \n\n\n        answer_id: 507f1f77bcf86cd79943900b\n        Question 2: Explain concept 2 in distributed systems.\n        Candidate's Answer: Candidate response for question 2 covering trade-offs and examples.\n      \n\n\n        answer_id: 507f1f77bcf86cd79943900c\n        Question 3: Explain concept 3 in distributed systems.\n        Candidate's Answer: Candidate response for question 3 covering trade-offs and examples.\n      \n\n\n        answer_id: 507f1f77bcf86cd79943900d\n        Question 4: Explain concept 4 in distributed systems.\n        Candidate's Answer: Candidate response for question 4 covering trade-offs and examples.\n      \n\n\n        answer_id: 507f1f77bcf86cd79943900e\n        Question 5: Explain concept 5 in distributed systems.\n        Candidate's Answer: Candidate response for question 5 covering trade-offs and examples.\n      \n\n\n        answer_id: 507f1f77bcf86cd79943900f\n        Question 6: Explain concept 6 in distributed systems.\n        Candidate's Answer: Candidate response for question 6 covering trade-offs and examples.\n      \n\n\n        answer_id: 507f1f77bcf86cd799439010\n        Question 7: Explain concept 7 in distributed systems.\n        Candidate's Answer: Candidate response for question 7 covering trade-offs and examples.\n      \n\n\n        answer_id: 507f1f77bcf86cd799439011\n        Question 8: Explain concept 8 in distributed systems.\n        Candidate's Answer: Candidate response for question 8 covering trade-offs and examples.\n      \n\n\n        answer_id: 507f1f77bcf86cd799439012\n        Question 9: Explain concept 9 in distributed systems.\n        Candidate's Answer: Candidate response for question 9 covering trade-offs and examples.\n      \n\n\n        answer_id: 507f1f77bcf86cd799439013\n        Question 10: Explain concept 10 in distributed systems.\n        Candidate's Answer: Candidate response for question 10 covering trade-offs and examples.\n      \n\n\n        answer_id: 507f1f77bcf86cd799439014\n        Question 11: Explain concept 11 in distributed systems.\n        Candidate's Answer: Candidate response for question 11 covering trade-offs and examples.\n      \n\n\n        answer_id: 507f1f77bcf86cd799439015\n        Question 12: Explain concept 12 in distributed systems.\n        Candidate's Answer: Candidate response for question 12 covering trade-offs and examples.\n      \n\n\n        answer_id: 507f1f77bcf86cd799439016\n        Question 13: Explain concept 13 in distributed systems.\n        Candidate's Answer: Candidate response for question 13 covering trade-offs and examples.\n      \n\n\n        answer_id: 507f1f77bcf86cd799439017\n        Question 14: Explain concept 14 in distributed systems.\n        Candidate's Answer: Candidate response for question 14 covering trade-offs and examples.\n      \n\n\n        answer_id: 507f1f77bcf86cd799439018\n        Question 15: Explain concept 15 in distributed systems.\n        Candidate's Answer: Candidate response for question 15 covering trade-offs and examples.\n      \n\n\n        answer_id: 507f1f77bcf86cd799439019\n        Question 16: Explain concept 16 in distributed systems.\n        Candidate's Answer: Candidate response for question 16 covering trade-offs and examples.\n      \n\n\n        answer_id: 507f1f77bcf86cd79943901a\n        Question 17: Explain concept 17 in distributed systems.\n        Candidate's Answer: Candidate response for question 17 covering trade-offs and examples.\n      \n\n\n        answer_id: 507f1f77bcf86cd79943901b\n        Question 18: Explain concept 18 in distributed systems.\n        Candidate's Answer: Candidate response for question 18 covering trade-offs and examples.\n      \n\n\n        answer_id: 507f1f77bcf86cd79943901c\n        Question 19: Explain concept 19 in distributed systems.\n        Candidate's Answer: Candidate response for question 19 covering trade-offs and examples.\n      \n\n\n        answer_id: 507f1f77bcf86cd79943901d\n        Question 20: Explain concept 20 in distributed systems.\n        Candidate's Answer: Candidate response for question 20 covering trade-offs and examples.\n      \n    ",
+    "baseline_schema": "baselineEvaluationSchema (question_text, no answer_id)",
+    "revised_schema": "idEvaluationSchema (requires answer_id)",
+    "run_timestamp_utc": "2026-09-10T06:04:50.620Z",
+    "node_version": "v22.14.0"
+  },
+  "summary": [
+    {
+      "condition": "baseline_text",
+      "runs_requested": 10,
+      "runs_api_success": 10,
+      "runs_api_failed": 0,
+      "runs_rejected": 0,
+      "total_text_join_failures": 0,
+      "total_silent_zero_score_fallbacks": 0,
+      "total_wording_changes": 0,
+      "total_exact_question_text_matches": 200,
+      "total_scores_preserved": 200,
+      "total_scores_lost": 0,
+      "total_missing_answer_ids": 0,
+      "total_unknown_answer_ids": 0,
+      "total_duplicate_model_answer_ids": 0
+    },
+    {
+      "condition": "revised_answer_id",
+      "runs_requested": 10,
+      "runs_api_success": 10,
+      "runs_api_failed": 0,
+      "runs_rejected": 0,
+      "total_text_join_failures": 0,
+      "total_silent_zero_score_fallbacks": 0,
+      "total_wording_changes": 0,
+      "total_exact_question_text_matches": 200,
+      "total_scores_preserved": 200,
+      "total_scores_lost": 0,
+      "total_missing_answer_ids": 0,
+      "total_unknown_answer_ids": 0,
+      "total_duplicate_model_answer_ids": 0
+    }
+  ],
+  "runs": [
+    {
+      "run_index": 1,
+      "condition": "baseline_text",
+      "api_success": true,
+      "model_question_count": 20,
+      "expected_question_count": 20,
+      "text_join_failures": 0,
+      "silent_zero_score_fallbacks": 0,
+      "wording_changes_in_model_output": 0,
+      "exact_question_text_matches_in_model_output": 20,
+      "scores_preserved_through_association": 20,
+      "scores_lost_through_association": 0,
+      "rejected": false,
+      "duplicate_model_answer_ids": 0,
+      "missing_answer_ids": 0,
+      "unknown_answer_ids": 0,
+      "order_preserved": true
+    },
+    {
+      "run_index": 2,
+      "condition": "baseline_text",
+      "api_success": true,
+      "model_question_count": 20,
+      "expected_question_count": 20,
+      "text_join_failures": 0,
+      "silent_zero_score_fallbacks": 0,
+      "wording_changes_in_model_output": 0,
+      "exact_question_text_matches_in_model_output": 20,
+      "scores_preserved_through_association": 20,
+      "scores_lost_through_association": 0,
+      "rejected": false,
+      "duplicate_model_answer_ids": 0,
+      "missing_answer_ids": 0,
+      "unknown_answer_ids": 0,
+      "order_preserved": true
+    },
+    {
+      "run_index": 3,
+      "condition": "baseline_text",
+      "api_success": true,
+      "model_question_count": 20,
+      "expected_question_count": 20,
+      "text_join_failures": 0,
+      "silent_zero_score_fallbacks": 0,
+      "wording_changes_in_model_output": 0,
+      "exact_question_text_matches_in_model_output": 20,
+      "scores_preserved_through_association": 20,
+      "scores_lost_through_association": 0,
+      "rejected": false,
+      "duplicate_model_answer_ids": 0,
+      "missing_answer_ids": 0,
+      "unknown_answer_ids": 0,
+      "order_preserved": true
+    },
+    {
+      "run_index": 4,
+      "condition": "baseline_text",
+      "api_success": true,
+      "model_question_count": 20,
+      "expected_question_count": 20,
+      "text_join_failures": 0,
+      "silent_zero_score_fallbacks": 0,
+      "wording_changes_in_model_output": 0,
+      "exact_question_text_matches_in_model_output": 20,
+      "scores_preserved_through_association": 20,
+      "scores_lost_through_association": 0,
+      "rejected": false,
+      "duplicate_model_answer_ids": 0,
+      "missing_answer_ids": 0,
+      "unknown_answer_ids": 0,
+      "order_preserved": true
+    },
+    {
+      "run_index": 5,
+      "condition": "baseline_text",
+      "api_success": true,
+      "model_question_count": 20,
+      "expected_question_count": 20,
+      "text_join_failures": 0,
+      "silent_zero_score_fallbacks": 0,
+      "wording_changes_in_model_output": 0,
+      "exact_question_text_matches_in_model_output": 20,
+      "scores_preserved_through_association": 20,
+      "scores_lost_through_association": 0,
+      "rejected": false,
+      "duplicate_model_answer_ids": 0,
+      "missing_answer_ids": 0,
+      "unknown_answer_ids": 0,
+      "order_preserved": true
+    },
+    {
+      "run_index": 6,
+      "condition": "baseline_text",
+      "api_success": true,
+      "model_question_count": 20,
+      "expected_question_count": 20,
+      "text_join_failures": 0,
+      "silent_zero_score_fallbacks": 0,
+      "wording_changes_in_model_output": 0,
+      "exact_question_text_matches_in_model_output": 20,
+      "scores_preserved_through_association": 20,
+      "scores_lost_through_association": 0,
+      "rejected": false,
+      "duplicate_model_answer_ids": 0,
+      "missing_answer_ids": 0,
+      "unknown_answer_ids": 0,
+      "order_preserved": true
+    },
+    {
+      "run_index": 7,
+      "condition": "baseline_text",
+      "api_success": true,
+      "model_question_count": 20,
+      "expected_question_count": 20,
+      "text_join_failures": 0,
+      "silent_zero_score_fallbacks": 0,
+      "wording_changes_in_model_output": 0,
+      "exact_question_text_matches_in_model_output": 20,
+      "scores_preserved_through_association": 20,
+      "scores_lost_through_association": 0,
+      "rejected": false,
+      "duplicate_model_answer_ids": 0,
+      "missing_answer_ids": 0,
+      "unknown_answer_ids": 0,
+      "order_preserved": true
+    },
+    {
+      "run_index": 8,
+      "condition": "baseline_text",
+      "api_success": true,
+      "model_question_count": 20,
+      "expected_question_count": 20,
+      "text_join_failures": 0,
+      "silent_zero_score_fallbacks": 0,
+      "wording_changes_in_model_output": 0,
+      "exact_question_text_matches_in_model_output": 20,
+      "scores_preserved_through_association": 20,
+      "scores_lost_through_association": 0,
+      "rejected": false,
+      "duplicate_model_answer_ids": 0,
+      "missing_answer_ids": 0,
+      "unknown_answer_ids": 0,
+      "order_preserved": true
+    },
+    {
+      "run_index": 9,
+      "condition": "baseline_text",
+      "api_success": true,
+      "model_question_count": 20,
+      "expected_question_count": 20,
+      "text_join_failures": 0,
+      "silent_zero_score_fallbacks": 0,
+      "wording_changes_in_model_output": 0,
+      "exact_question_text_matches_in_model_output": 20,
+      "scores_preserved_through_association": 20,
+      "scores_lost_through_association": 0,
+      "rejected": false,
+      "duplicate_model_answer_ids": 0,
+      "missing_answer_ids": 0,
+      "unknown_answer_ids": 0,
+      "order_preserved": true
+    },
+    {
+      "run_index": 10,
+      "condition": "baseline_text",
+      "api_success": true,
+      "model_question_count": 20,
+      "expected_question_count": 20,
+      "text_join_failures": 0,
+      "silent_zero_score_fallbacks": 0,
+      "wording_changes_in_model_output": 0,
+      "exact_question_text_matches_in_model_output": 20,
+      "scores_preserved_through_association": 20,
+      "scores_lost_through_association": 0,
+      "rejected": false,
+      "duplicate_model_answer_ids": 0,
+      "missing_answer_ids": 0,
+      "unknown_answer_ids": 0,
+      "order_preserved": true
+    },
+    {
+      "run_index": 1,
+      "condition": "revised_answer_id",
+      "api_success": true,
+      "model_question_count": 20,
+      "expected_question_count": 20,
+      "text_join_failures": 0,
+      "silent_zero_score_fallbacks": 0,
+      "wording_changes_in_model_output": 0,
+      "exact_question_text_matches_in_model_output": 20,
+      "scores_preserved_through_association": 20,
+      "scores_lost_through_association": 0,
+      "rejected": false,
+      "duplicate_model_answer_ids": 0,
+      "missing_answer_ids": 0,
+      "unknown_answer_ids": 0,
+      "order_preserved": true
+    },
+    {
+      "run_index": 2,
+      "condition": "revised_answer_id",
+      "api_success": true,
+      "model_question_count": 20,
+      "expected_question_count": 20,
+      "text_join_failures": 0,
+      "silent_zero_score_fallbacks": 0,
+      "wording_changes_in_model_output": 0,
+      "exact_question_text_matches_in_model_output": 20,
+      "scores_preserved_through_association": 20,
+      "scores_lost_through_association": 0,
+      "rejected": false,
+      "duplicate_model_answer_ids": 0,
+      "missing_answer_ids": 0,
+      "unknown_answer_ids": 0,
+      "order_preserved": true
+    },
+    {
+      "run_index": 3,
+      "condition": "revised_answer_id",
+      "api_success": true,
+      "model_question_count": 20,
+      "expected_question_count": 20,
+      "text_join_failures": 0,
+      "silent_zero_score_fallbacks": 0,
+      "wording_changes_in_model_output": 0,
+      "exact_question_text_matches_in_model_output": 20,
+      "scores_preserved_through_association": 20,
+      "scores_lost_through_association": 0,
+      "rejected": false,
+      "duplicate_model_answer_ids": 0,
+      "missing_answer_ids": 0,
+      "unknown_answer_ids": 0,
+      "order_preserved": true
+    },
+    {
+      "run_index": 4,
+      "condition": "revised_answer_id",
+      "api_success": true,
+      "model_question_count": 20,
+      "expected_question_count": 20,
+      "text_join_failures": 0,
+      "silent_zero_score_fallbacks": 0,
+      "wording_changes_in_model_output": 0,
+      "exact_question_text_matches_in_model_output": 20,
+      "scores_preserved_through_association": 20,
+      "scores_lost_through_association": 0,
+      "rejected": false,
+      "duplicate_model_answer_ids": 0,
+      "missing_answer_ids": 0,
+      "unknown_answer_ids": 0,
+      "order_preserved": true
+    },
+    {
+      "run_index": 5,
+      "condition": "revised_answer_id",
+      "api_success": true,
+      "model_question_count": 20,
+      "expected_question_count": 20,
+      "text_join_failures": 0,
+      "silent_zero_score_fallbacks": 0,
+      "wording_changes_in_model_output": 0,
+      "exact_question_text_matches_in_model_output": 20,
+      "scores_preserved_through_association": 20,
+      "scores_lost_through_association": 0,
+      "rejected": false,
+      "duplicate_model_answer_ids": 0,
+      "missing_answer_ids": 0,
+      "unknown_answer_ids": 0,
+      "order_preserved": true
+    },
+    {
+      "run_index": 6,
+      "condition": "revised_answer_id",
+      "api_success": true,
+      "model_question_count": 20,
+      "expected_question_count": 20,
+      "text_join_failures": 0,
+      "silent_zero_score_fallbacks": 0,
+      "wording_changes_in_model_output": 0,
+      "exact_question_text_matches_in_model_output": 20,
+      "scores_preserved_through_association": 20,
+      "scores_lost_through_association": 0,
+      "rejected": false,
+      "duplicate_model_answer_ids": 0,
+      "missing_answer_ids": 0,
+      "unknown_answer_ids": 0,
+      "order_preserved": true
+    },
+    {
+      "run_index": 7,
+      "condition": "revised_answer_id",
+      "api_success": true,
+      "model_question_count": 20,
+      "expected_question_count": 20,
+      "text_join_failures": 0,
+      "silent_zero_score_fallbacks": 0,
+      "wording_changes_in_model_output": 0,
+      "exact_question_text_matches_in_model_output": 20,
+      "scores_preserved_through_association": 20,
+      "scores_lost_through_association": 0,
+      "rejected": false,
+      "duplicate_model_answer_ids": 0,
+      "missing_answer_ids": 0,
+      "unknown_answer_ids": 0,
+      "order_preserved": true
+    },
+    {
+      "run_index": 8,
+      "condition": "revised_answer_id",
+      "api_success": true,
+      "model_question_count": 20,
+      "expected_question_count": 20,
+      "text_join_failures": 0,
+      "silent_zero_score_fallbacks": 0,
+      "wording_changes_in_model_output": 0,
+      "exact_question_text_matches_in_model_output": 20,
+      "scores_preserved_through_association": 20,
+      "scores_lost_through_association": 0,
+      "rejected": false,
+      "duplicate_model_answer_ids": 0,
+      "missing_answer_ids": 0,
+      "unknown_answer_ids": 0,
+      "order_preserved": true
+    },
+    {
+      "run_index": 9,
+      "condition": "revised_answer_id",
+      "api_success": true,
+      "model_question_count": 20,
+      "expected_question_count": 20,
+      "text_join_failures": 0,
+      "silent_zero_score_fallbacks": 0,
+      "wording_changes_in_model_output": 0,
+      "exact_question_text_matches_in_model_output": 20,
+      "scores_preserved_through_association": 20,
+      "scores_lost_through_association": 0,
+      "rejected": false,
+      "duplicate_model_answer_ids": 0,
+      "missing_answer_ids": 0,
+      "unknown_answer_ids": 0,
+      "order_preserved": true
+    },
+    {
+      "run_index": 10,
+      "condition": "revised_answer_id",
+      "api_success": true,
+      "model_question_count": 20,
+      "expected_question_count": 20,
+      "text_join_failures": 0,
+      "silent_zero_score_fallbacks": 0,
+      "wording_changes_in_model_output": 0,
+      "exact_question_text_matches_in_model_output": 20,
+      "scores_preserved_through_association": 20,
+      "scores_lost_through_association": 0,
+      "rejected": false,
+      "duplicate_model_answer_ids": 0,
+      "missing_answer_ids": 0,
+      "unknown_answer_ids": 0,
+      "order_preserved": true
+    }
+  ],
+  "run_logs": [
+    {
+      "condition": "baseline_text",
+      "run_index": 1,
+      "metrics": {
+        "run_index": 1,
+        "condition": "baseline_text",
+        "api_success": true,
+        "model_question_count": 20,
+        "expected_question_count": 20,
+        "text_join_failures": 0,
+        "silent_zero_score_fallbacks": 0,
+        "wording_changes_in_model_output": 0,
+        "exact_question_text_matches_in_model_output": 20,
+        "scores_preserved_through_association": 20,
+        "scores_lost_through_association": 0,
+        "rejected": false,
+        "duplicate_model_answer_ids": 0,
+        "missing_answer_ids": 0,
+        "unknown_answer_ids": 0,
+        "order_preserved": true
+      },
+      "failure": null,
+      "model_response": {
+        "overall_score": 8.5,
+        "score_breakdown": {
+          "technical": 8.5,
+          "communication": 8,
+          "problem_solving": 8.5,
+          "confidence": 9
+        },
+        "questions": [
+          {
+            "question_text": "Explain concept 1 in distributed systems.",
+            "user_answer": "Candidate response for question 1 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good explanation covering core trade-offs and practical examples."
+          },
+          {
+            "question_text": "Explain concept 2 in distributed systems.",
+            "user_answer": "Candidate response for question 2 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear articulation of system design principles and trade-offs."
+          },
+          {
+            "question_text": "Explain concept 3 in distributed systems.",
+            "user_answer": "Candidate response for question 3 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Well-structured answer addressing reliability and edge cases."
+          },
+          {
+            "question_text": "Explain concept 4 in distributed systems.",
+            "user_answer": "Candidate response for question 4 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Demonstrates a solid understanding of consistency models."
+          },
+          {
+            "question_text": "Explain concept 5 in distributed systems.",
+            "user_answer": "Candidate response for question 5 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Effective use of real-world scenarios to explain architectural decisions."
+          },
+          {
+            "question_text": "Explain concept 6 in distributed systems.",
+            "user_answer": "Candidate response for question 6 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Accurately covers fault tolerance and performance implications."
+          },
+          {
+            "question_text": "Explain concept 7 in distributed systems.",
+            "user_answer": "Candidate response for question 7 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Comprehensive answer with good insights into latency vs throughput."
+          },
+          {
+            "question_text": "Explain concept 8 in distributed systems.",
+            "user_answer": "Candidate response for question 8 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Solid breakdown of distributed consensus mechanisms."
+          },
+          {
+            "question_text": "Explain concept 9 in distributed systems.",
+            "user_answer": "Candidate response for question 9 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear presentation of partitioning strategies and scalability."
+          },
+          {
+            "question_text": "Explain concept 10 in distributed systems.",
+            "user_answer": "Candidate response for question 10 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good insights into asynchronous processing and messaging patterns."
+          },
+          {
+            "question_text": "Explain concept 11 in distributed systems.",
+            "user_answer": "Candidate response for question 11 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Well-reasoned trade-off analysis between availability and consistency."
+          },
+          {
+            "question_text": "Explain concept 12 in distributed systems.",
+            "user_answer": "Candidate response for question 12 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear communication of technical concepts with relevant examples."
+          },
+          {
+            "question_text": "Explain concept 13 in distributed systems.",
+            "user_answer": "Candidate response for question 13 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Accurate discussion on network partitioning and mitigation techniques."
+          },
+          {
+            "question_text": "Explain concept 14 in distributed systems.",
+            "user_answer": "Candidate response for question 14 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Strong explanation of distributed caching strategies."
+          },
+          {
+            "question_text": "Explain concept 15 in distributed systems.",
+            "user_answer": "Candidate response for question 15 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good balance between theoretical understanding and practical application."
+          },
+          {
+            "question_text": "Explain concept 16 in distributed systems.",
+            "user_answer": "Candidate response for question 16 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Detailed discussion on data replication and synchronicity."
+          },
+          {
+            "question_text": "Explain concept 17 in distributed systems.",
+            "user_answer": "Candidate response for question 17 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Solid explanation of load balancing techniques and health checks."
+          },
+          {
+            "question_text": "Explain concept 18 in distributed systems.",
+            "user_answer": "Candidate response for question 18 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear overview of idempotent operations and retry policies."
+          },
+          {
+            "question_text": "Explain concept 19 in distributed systems.",
+            "user_answer": "Candidate response for question 19 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Effective analysis of distributed tracing and monitoring."
+          },
+          {
+            "question_text": "Explain concept 20 in distributed systems.",
+            "user_answer": "Candidate response for question 20 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Thorough answer detailing security and access control in distributed setups."
+          }
+        ]
+      }
+    },
+    {
+      "condition": "baseline_text",
+      "run_index": 2,
+      "metrics": {
+        "run_index": 2,
+        "condition": "baseline_text",
+        "api_success": true,
+        "model_question_count": 20,
+        "expected_question_count": 20,
+        "text_join_failures": 0,
+        "silent_zero_score_fallbacks": 0,
+        "wording_changes_in_model_output": 0,
+        "exact_question_text_matches_in_model_output": 20,
+        "scores_preserved_through_association": 20,
+        "scores_lost_through_association": 0,
+        "rejected": false,
+        "duplicate_model_answer_ids": 0,
+        "missing_answer_ids": 0,
+        "unknown_answer_ids": 0,
+        "order_preserved": true
+      },
+      "failure": null,
+      "model_response": {
+        "overall_score": 8.5,
+        "score_breakdown": {
+          "technical": 8.8,
+          "communication": 8.5,
+          "problem_solving": 8.2,
+          "confidence": 8.5
+        },
+        "questions": [
+          {
+            "question_text": "Explain concept 1 in distributed systems.",
+            "user_answer": "Candidate response for question 1 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good explanation covering core trade-offs and practical examples effectively."
+          },
+          {
+            "question_text": "Explain concept 2 in distributed systems.",
+            "user_answer": "Candidate response for question 2 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Well-structured answer addressing key architectural considerations."
+          },
+          {
+            "question_text": "Explain concept 3 in distributed systems.",
+            "user_answer": "Candidate response for question 3 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear articulation of concepts and trade-offs."
+          },
+          {
+            "question_text": "Explain concept 4 in distributed systems.",
+            "user_answer": "Candidate response for question 4 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Solid technical depth with realistic examples."
+          },
+          {
+            "question_text": "Explain concept 5 in distributed systems.",
+            "user_answer": "Candidate response for question 5 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good overview of trade-offs in distributed environments."
+          },
+          {
+            "question_text": "Explain concept 6 in distributed systems.",
+            "user_answer": "Candidate response for question 6 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Accurately highlighted real-world scenarios and trade-offs."
+          },
+          {
+            "question_text": "Explain concept 7 in distributed systems.",
+            "user_answer": "Candidate response for question 7 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Comprehensive answer showing technical awareness."
+          },
+          {
+            "question_text": "Explain concept 8 in distributed systems.",
+            "user_answer": "Candidate response for question 8 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Demonstrated clear understanding of system constraints."
+          },
+          {
+            "question_text": "Explain concept 9 in distributed systems.",
+            "user_answer": "Candidate response for question 9 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good explanation with effective use of examples."
+          },
+          {
+            "question_text": "Explain concept 10 in distributed systems.",
+            "user_answer": "Candidate response for question 10 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Solid response addressing scalability and reliability trade-offs."
+          },
+          {
+            "question_text": "Explain concept 11 in distributed systems.",
+            "user_answer": "Candidate response for question 11 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear logic and structured technical details provided."
+          },
+          {
+            "question_text": "Explain concept 12 in distributed systems.",
+            "user_answer": "Candidate response for question 12 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Adequately addressed key mechanics and design trade-offs."
+          },
+          {
+            "question_text": "Explain concept 13 in distributed systems.",
+            "user_answer": "Candidate response for question 13 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good explanation covering both theory and practical application."
+          },
+          {
+            "question_text": "Explain concept 14 in distributed systems.",
+            "user_answer": "Candidate response for question 14 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Well-reasoned answer with accurate technical terms."
+          },
+          {
+            "question_text": "Explain concept 15 in distributed systems.",
+            "user_answer": "Candidate response for question 15 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Demonstrated good problem-solving and domain knowledge."
+          },
+          {
+            "question_text": "Explain concept 16 in distributed systems.",
+            "user_answer": "Candidate response for question 16 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear description of trade-offs involved."
+          },
+          {
+            "question_text": "Explain concept 17 in distributed systems.",
+            "user_answer": "Candidate response for question 17 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Effective explanation with valid examples."
+          },
+          {
+            "question_text": "Explain concept 18 in distributed systems.",
+            "user_answer": "Candidate response for question 18 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good technical grounding and clear communication."
+          },
+          {
+            "question_text": "Explain concept 19 in distributed systems.",
+            "user_answer": "Candidate response for question 19 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Solid answer highlighting system constraints."
+          },
+          {
+            "question_text": "Explain concept 20 in distributed systems.",
+            "user_answer": "Candidate response for question 20 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Comprehensive answer summarizing key trade-offs."
+          }
+        ]
+      }
+    },
+    {
+      "condition": "baseline_text",
+      "run_index": 3,
+      "metrics": {
+        "run_index": 3,
+        "condition": "baseline_text",
+        "api_success": true,
+        "model_question_count": 20,
+        "expected_question_count": 20,
+        "text_join_failures": 0,
+        "silent_zero_score_fallbacks": 0,
+        "wording_changes_in_model_output": 0,
+        "exact_question_text_matches_in_model_output": 20,
+        "scores_preserved_through_association": 20,
+        "scores_lost_through_association": 0,
+        "rejected": false,
+        "duplicate_model_answer_ids": 0,
+        "missing_answer_ids": 0,
+        "unknown_answer_ids": 0,
+        "order_preserved": true
+      },
+      "failure": null,
+      "model_response": {
+        "overall_score": 8.5,
+        "score_breakdown": {
+          "technical": 8.5,
+          "communication": 8,
+          "problem_solving": 8.5,
+          "confidence": 9
+        },
+        "questions": [
+          {
+            "question_text": "Explain concept 1 in distributed systems.",
+            "user_answer": "Candidate response for question 1 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good explanation of key trade-offs and clear examples provided."
+          },
+          {
+            "question_text": "Explain concept 2 in distributed systems.",
+            "user_answer": "Candidate response for question 2 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Well-structured response detailing trade-offs."
+          },
+          {
+            "question_text": "Explain concept 3 in distributed systems.",
+            "user_answer": "Candidate response for question 3 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear insights into distributed system behavior under failure conditions."
+          },
+          {
+            "question_text": "Explain concept 4 in distributed systems.",
+            "user_answer": "Candidate response for question 4 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Solid explanation with relevant real-world use cases."
+          },
+          {
+            "question_text": "Explain concept 5 in distributed systems.",
+            "user_answer": "Candidate response for question 5 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Demonstrated good technical depth and logical reasoning."
+          },
+          {
+            "question_text": "Explain concept 6 in distributed systems.",
+            "user_answer": "Candidate response for question 6 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Accurately identified core challenges and mitigation strategies."
+          },
+          {
+            "question_text": "Explain concept 7 in distributed systems.",
+            "user_answer": "Candidate response for question 7 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good coverage of consistency and availability trade-offs."
+          },
+          {
+            "question_text": "Explain concept 8 in distributed systems.",
+            "user_answer": "Candidate response for question 8 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear presentation of technical details."
+          },
+          {
+            "question_text": "Explain concept 9 in distributed systems.",
+            "user_answer": "Candidate response for question 9 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Solid understanding demonstrated through concrete examples."
+          },
+          {
+            "question_text": "Explain concept 10 in distributed systems.",
+            "user_answer": "Candidate response for question 10 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good articulation of architecture trade-offs."
+          },
+          {
+            "question_text": "Explain concept 11 in distributed systems.",
+            "user_answer": "Candidate response for question 11 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Well-reasoned answer addressing complexity and performance."
+          },
+          {
+            "question_text": "Explain concept 12 in distributed systems.",
+            "user_answer": "Candidate response for question 12 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good grasp of fundamental principles."
+          },
+          {
+            "question_text": "Explain concept 13 in distributed systems.",
+            "user_answer": "Candidate response for question 13 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Thorough analysis of system limitations and advantages."
+          },
+          {
+            "question_text": "Explain concept 14 in distributed systems.",
+            "user_answer": "Candidate response for question 14 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear communication of technical concepts."
+          },
+          {
+            "question_text": "Explain concept 15 in distributed systems.",
+            "user_answer": "Candidate response for question 15 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Strong examples provided to support points."
+          },
+          {
+            "question_text": "Explain concept 16 in distributed systems.",
+            "user_answer": "Candidate response for question 16 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good summary of practical trade-offs."
+          },
+          {
+            "question_text": "Explain concept 17 in distributed systems.",
+            "user_answer": "Candidate response for question 17 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear explanation of system resilience and scaling."
+          },
+          {
+            "question_text": "Explain concept 18 in distributed systems.",
+            "user_answer": "Candidate response for question 18 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Effective explanation of latency and throughput considerations."
+          },
+          {
+            "question_text": "Explain concept 19 in distributed systems.",
+            "user_answer": "Candidate response for question 19 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good evaluation of consistency models."
+          },
+          {
+            "question_text": "Explain concept 20 in distributed systems.",
+            "user_answer": "Candidate response for question 20 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Comprehensive answer highlighting core system dynamics."
+          }
+        ]
+      }
+    },
+    {
+      "condition": "baseline_text",
+      "run_index": 4,
+      "metrics": {
+        "run_index": 4,
+        "condition": "baseline_text",
+        "api_success": true,
+        "model_question_count": 20,
+        "expected_question_count": 20,
+        "text_join_failures": 0,
+        "silent_zero_score_fallbacks": 0,
+        "wording_changes_in_model_output": 0,
+        "exact_question_text_matches_in_model_output": 20,
+        "scores_preserved_through_association": 20,
+        "scores_lost_through_association": 0,
+        "rejected": false,
+        "duplicate_model_answer_ids": 0,
+        "missing_answer_ids": 0,
+        "unknown_answer_ids": 0,
+        "order_preserved": true
+      },
+      "failure": null,
+      "model_response": {
+        "overall_score": 8.5,
+        "score_breakdown": {
+          "technical": 8.5,
+          "communication": 8.5,
+          "problem_solving": 8.5,
+          "confidence": 8.5
+        },
+        "questions": [
+          {
+            "question_text": "Explain concept 1 in distributed systems.",
+            "user_answer": "Candidate response for question 1 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response covering key trade-offs and real-world examples."
+          },
+          {
+            "question_text": "Explain concept 2 in distributed systems.",
+            "user_answer": "Candidate response for question 2 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear explanation with strong technical details."
+          },
+          {
+            "question_text": "Explain concept 3 in distributed systems.",
+            "user_answer": "Candidate response for question 3 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Well-structured answer highlighting trade-offs effectively."
+          },
+          {
+            "question_text": "Explain concept 4 in distributed systems.",
+            "user_answer": "Candidate response for question 4 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Solid understanding demonstrated through concrete examples."
+          },
+          {
+            "question_text": "Explain concept 5 in distributed systems.",
+            "user_answer": "Candidate response for question 5 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Accurate discussion on system implications and design choices."
+          },
+          {
+            "question_text": "Explain concept 6 in distributed systems.",
+            "user_answer": "Candidate response for question 6 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation covering core principles and trade-offs."
+          },
+          {
+            "question_text": "Explain concept 7 in distributed systems.",
+            "user_answer": "Candidate response for question 7 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear explanation with practical examples provided."
+          },
+          {
+            "question_text": "Explain concept 8 in distributed systems.",
+            "user_answer": "Candidate response for question 8 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Strong response detailing key architectural considerations."
+          },
+          {
+            "question_text": "Explain concept 9 in distributed systems.",
+            "user_answer": "Candidate response for question 9 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Comprehensive analysis of trade-offs in distributed scenarios."
+          },
+          {
+            "question_text": "Explain concept 10 in distributed systems.",
+            "user_answer": "Candidate response for question 10 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Well-explained concept with accurate contextual trade-offs."
+          },
+          {
+            "question_text": "Explain concept 11 in distributed systems.",
+            "user_answer": "Candidate response for question 11 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good candidate explanation covering relevant edge cases."
+          },
+          {
+            "question_text": "Explain concept 12 in distributed systems.",
+            "user_answer": "Candidate response for question 12 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Detailed answer addressing core system trade-offs."
+          },
+          {
+            "question_text": "Explain concept 13 in distributed systems.",
+            "user_answer": "Candidate response for question 13 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear articulation of design decisions and trade-offs."
+          },
+          {
+            "question_text": "Explain concept 14 in distributed systems.",
+            "user_answer": "Candidate response for question 14 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Solid breakdown of technical trade-offs and implementation examples."
+          },
+          {
+            "question_text": "Explain concept 15 in distributed systems.",
+            "user_answer": "Candidate response for question 15 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good depth in explanation and practical reasoning."
+          },
+          {
+            "question_text": "Explain concept 16 in distributed systems.",
+            "user_answer": "Candidate response for question 16 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Accurate analysis of distributed properties and examples."
+          },
+          {
+            "question_text": "Explain concept 17 in distributed systems.",
+            "user_answer": "Candidate response for question 17 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Well-rounded answer covering trade-offs and system impacts."
+          },
+          {
+            "question_text": "Explain concept 18 in distributed systems.",
+            "user_answer": "Candidate response for question 18 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Effective explanation with applicable real-world scenarios."
+          },
+          {
+            "question_text": "Explain concept 19 in distributed systems.",
+            "user_answer": "Candidate response for question 19 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear description of key architectural concepts."
+          },
+          {
+            "question_text": "Explain concept 20 in distributed systems.",
+            "user_answer": "Candidate response for question 20 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Strong summary of concept trade-offs and practical implications."
+          }
+        ]
+      }
+    },
+    {
+      "condition": "baseline_text",
+      "run_index": 5,
+      "metrics": {
+        "run_index": 5,
+        "condition": "baseline_text",
+        "api_success": true,
+        "model_question_count": 20,
+        "expected_question_count": 20,
+        "text_join_failures": 0,
+        "silent_zero_score_fallbacks": 0,
+        "wording_changes_in_model_output": 0,
+        "exact_question_text_matches_in_model_output": 20,
+        "scores_preserved_through_association": 20,
+        "scores_lost_through_association": 0,
+        "rejected": false,
+        "duplicate_model_answer_ids": 0,
+        "missing_answer_ids": 0,
+        "unknown_answer_ids": 0,
+        "order_preserved": true
+      },
+      "failure": null,
+      "model_response": {
+        "overall_score": 8.5,
+        "score_breakdown": {
+          "technical": 88,
+          "communication": 85,
+          "problem_solving": 84,
+          "confidence": 85
+        },
+        "questions": [
+          {
+            "question_text": "Explain concept 1 in distributed systems.",
+            "user_answer": "Candidate response for question 1 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good overview of trade-offs and real-world examples provided."
+          },
+          {
+            "question_text": "Explain concept 2 in distributed systems.",
+            "user_answer": "Candidate response for question 2 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear explanation covering key architectural trade-offs."
+          },
+          {
+            "question_text": "Explain concept 3 in distributed systems.",
+            "user_answer": "Candidate response for question 3 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Solid understanding demonstrated with appropriate examples."
+          },
+          {
+            "question_text": "Explain concept 4 in distributed systems.",
+            "user_answer": "Candidate response for question 4 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Well-structured answer addressing core trade-offs."
+          },
+          {
+            "question_text": "Explain concept 5 in distributed systems.",
+            "user_answer": "Candidate response for question 5 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good technical depth and practical usage examples."
+          },
+          {
+            "question_text": "Explain concept 6 in distributed systems.",
+            "user_answer": "Candidate response for question 6 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Effectively communicated the core trade-offs."
+          },
+          {
+            "question_text": "Explain concept 7 in distributed systems.",
+            "user_answer": "Candidate response for question 7 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Detailed explanation supported by relevant examples."
+          },
+          {
+            "question_text": "Explain concept 8 in distributed systems.",
+            "user_answer": "Candidate response for question 8 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Accurately identified system constraints and trade-offs."
+          },
+          {
+            "question_text": "Explain concept 9 in distributed systems.",
+            "user_answer": "Candidate response for question 9 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Strong response highlighting key design considerations."
+          },
+          {
+            "question_text": "Explain concept 10 in distributed systems.",
+            "user_answer": "Candidate response for question 10 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Comprehensive answer with clear examples."
+          },
+          {
+            "question_text": "Explain concept 11 in distributed systems.",
+            "user_answer": "Candidate response for question 11 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good technical explanation of fundamental concepts."
+          },
+          {
+            "question_text": "Explain concept 12 in distributed systems.",
+            "user_answer": "Candidate response for question 12 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear articulation of system behavior and trade-offs."
+          },
+          {
+            "question_text": "Explain concept 13 in distributed systems.",
+            "user_answer": "Candidate response for question 13 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Well-explained concept with good practical insights."
+          },
+          {
+            "question_text": "Explain concept 14 in distributed systems.",
+            "user_answer": "Candidate response for question 14 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Demonstrated good familiarity with distributed trade-offs."
+          },
+          {
+            "question_text": "Explain concept 15 in distributed systems.",
+            "user_answer": "Candidate response for question 15 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Solid response covering both pros and cons."
+          },
+          {
+            "question_text": "Explain concept 16 in distributed systems.",
+            "user_answer": "Candidate response for question 16 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear communication of technical nuances."
+          },
+          {
+            "question_text": "Explain concept 17 in distributed systems.",
+            "user_answer": "Candidate response for question 17 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good breakdown of complex distributed properties."
+          },
+          {
+            "question_text": "Explain concept 18 in distributed systems.",
+            "user_answer": "Candidate response for question 18 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Effective explanation with relevant trade-offs discussed."
+          },
+          {
+            "question_text": "Explain concept 19 in distributed systems.",
+            "user_answer": "Candidate response for question 19 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Well-reasoned response with appropriate examples."
+          },
+          {
+            "question_text": "Explain concept 20 in distributed systems.",
+            "user_answer": "Candidate response for question 20 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Strong conclusion covering trade-offs and real-world implications."
+          }
+        ]
+      }
+    },
+    {
+      "condition": "baseline_text",
+      "run_index": 6,
+      "metrics": {
+        "run_index": 6,
+        "condition": "baseline_text",
+        "api_success": true,
+        "model_question_count": 20,
+        "expected_question_count": 20,
+        "text_join_failures": 0,
+        "silent_zero_score_fallbacks": 0,
+        "wording_changes_in_model_output": 0,
+        "exact_question_text_matches_in_model_output": 20,
+        "scores_preserved_through_association": 20,
+        "scores_lost_through_association": 0,
+        "rejected": false,
+        "duplicate_model_answer_ids": 0,
+        "missing_answer_ids": 0,
+        "unknown_answer_ids": 0,
+        "order_preserved": true
+      },
+      "failure": null,
+      "model_response": {
+        "overall_score": 8.5,
+        "score_breakdown": {
+          "technical": 8.8,
+          "communication": 8.5,
+          "problem_solving": 8.2,
+          "confidence": 8.5
+        },
+        "questions": [
+          {
+            "question_text": "Explain concept 1 in distributed systems.",
+            "user_answer": "Candidate response for question 1 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Solid explanation covering relevant trade-offs and practical examples."
+          },
+          {
+            "question_text": "Explain concept 2 in distributed systems.",
+            "user_answer": "Candidate response for question 2 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear concise answer with good real-world applicability."
+          },
+          {
+            "question_text": "Explain concept 3 in distributed systems.",
+            "user_answer": "Candidate response for question 3 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Well-structured response highlighting key considerations."
+          },
+          {
+            "question_text": "Explain concept 4 in distributed systems.",
+            "user_answer": "Candidate response for question 4 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Demonstrates good technical understanding and trade-off analysis."
+          },
+          {
+            "question_text": "Explain concept 5 in distributed systems.",
+            "user_answer": "Candidate response for question 5 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Accurate explanation with well-chosen examples."
+          },
+          {
+            "question_text": "Explain concept 6 in distributed systems.",
+            "user_answer": "Candidate response for question 6 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Detailed discussion on system limitations and benefits."
+          },
+          {
+            "question_text": "Explain concept 7 in distributed systems.",
+            "user_answer": "Candidate response for question 7 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good communication of core principles and trade-offs."
+          },
+          {
+            "question_text": "Explain concept 8 in distributed systems.",
+            "user_answer": "Candidate response for question 8 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Strong answer highlighting critical architectural nuances."
+          },
+          {
+            "question_text": "Explain concept 9 in distributed systems.",
+            "user_answer": "Candidate response for question 9 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Effective explanation of trade-offs in distributed context."
+          },
+          {
+            "question_text": "Explain concept 10 in distributed systems.",
+            "user_answer": "Candidate response for question 10 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Comprehensive answer with useful practical insights."
+          },
+          {
+            "question_text": "Explain concept 11 in distributed systems.",
+            "user_answer": "Candidate response for question 11 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Thorough coverage of system trade-offs."
+          },
+          {
+            "question_text": "Explain concept 12 in distributed systems.",
+            "user_answer": "Candidate response for question 12 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear exposition of the concepts and edge cases."
+          },
+          {
+            "question_text": "Explain concept 13 in distributed systems.",
+            "user_answer": "Candidate response for question 13 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good depth of knowledge shown across multiple scenarios."
+          },
+          {
+            "question_text": "Explain concept 14 in distributed systems.",
+            "user_answer": "Candidate response for question 14 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Well-articulated answer covering trade-offs effectively."
+          },
+          {
+            "question_text": "Explain concept 15 in distributed systems.",
+            "user_answer": "Candidate response for question 15 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear explanation supported by solid example use-cases."
+          },
+          {
+            "question_text": "Explain concept 16 in distributed systems.",
+            "user_answer": "Candidate response for question 16 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good conceptual analysis with realistic examples."
+          },
+          {
+            "question_text": "Explain concept 17 in distributed systems.",
+            "user_answer": "Candidate response for question 17 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Detailed technical insights provided for the trade-offs."
+          },
+          {
+            "question_text": "Explain concept 18 in distributed systems.",
+            "user_answer": "Candidate response for question 18 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Strong grasp of distributed design choices demonstrated."
+          },
+          {
+            "question_text": "Explain concept 19 in distributed systems.",
+            "user_answer": "Candidate response for question 19 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Solid reasoning behind trade-off evaluations."
+          },
+          {
+            "question_text": "Explain concept 20 in distributed systems.",
+            "user_answer": "Candidate response for question 20 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Comprehensive conclusion and explanation."
+          }
+        ]
+      }
+    },
+    {
+      "condition": "baseline_text",
+      "run_index": 7,
+      "metrics": {
+        "run_index": 7,
+        "condition": "baseline_text",
+        "api_success": true,
+        "model_question_count": 20,
+        "expected_question_count": 20,
+        "text_join_failures": 0,
+        "silent_zero_score_fallbacks": 0,
+        "wording_changes_in_model_output": 0,
+        "exact_question_text_matches_in_model_output": 20,
+        "scores_preserved_through_association": 20,
+        "scores_lost_through_association": 0,
+        "rejected": false,
+        "duplicate_model_answer_ids": 0,
+        "missing_answer_ids": 0,
+        "unknown_answer_ids": 0,
+        "order_preserved": true
+      },
+      "failure": null,
+      "model_response": {
+        "overall_score": 8.8,
+        "score_breakdown": {
+          "technical": 9,
+          "communication": 8.5,
+          "problem_solving": 8.8,
+          "confidence": 8.9
+        },
+        "questions": [
+          {
+            "question_text": "Explain concept 1 in distributed systems.",
+            "user_answer": "Candidate response for question 1 covering trade-offs and examples.",
+            "score": 88,
+            "feedback": "Solid explanation covering relevant trade-offs and practical examples."
+          },
+          {
+            "question_text": "Explain concept 2 in distributed systems.",
+            "user_answer": "Candidate response for question 2 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response with clear trade-off analysis."
+          },
+          {
+            "question_text": "Explain concept 3 in distributed systems.",
+            "user_answer": "Candidate response for question 3 covering trade-offs and examples.",
+            "score": 90,
+            "feedback": "Very clear explanation with well-structured examples."
+          },
+          {
+            "question_text": "Explain concept 4 in distributed systems.",
+            "user_answer": "Candidate response for question 4 covering trade-offs and examples.",
+            "score": 87,
+            "feedback": "Well-articulated explanation of system mechanics."
+          },
+          {
+            "question_text": "Explain concept 5 in distributed systems.",
+            "user_answer": "Candidate response for question 5 covering trade-offs and examples.",
+            "score": 86,
+            "feedback": "Detailed discussion of architectural trade-offs."
+          },
+          {
+            "question_text": "Explain concept 6 in distributed systems.",
+            "user_answer": "Candidate response for question 6 covering trade-offs and examples.",
+            "score": 89,
+            "feedback": "Strong technical understanding demonstrated."
+          },
+          {
+            "question_text": "Explain concept 7 in distributed systems.",
+            "user_answer": "Candidate response for question 7 covering trade-offs and examples.",
+            "score": 88,
+            "feedback": "Comprehensive answer including edge cases."
+          },
+          {
+            "question_text": "Explain concept 8 in distributed systems.",
+            "user_answer": "Candidate response for question 8 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good coverage of core trade-offs."
+          },
+          {
+            "question_text": "Explain concept 9 in distributed systems.",
+            "user_answer": "Candidate response for question 9 covering trade-offs and examples.",
+            "score": 91,
+            "feedback": "Excellent breakdown with practical implementation scenarios."
+          },
+          {
+            "question_text": "Explain concept 10 in distributed systems.",
+            "user_answer": "Candidate response for question 10 covering trade-offs and examples.",
+            "score": 87,
+            "feedback": "Clear articulation of design choices."
+          },
+          {
+            "question_text": "Explain concept 11 in distributed systems.",
+            "user_answer": "Candidate response for question 11 covering trade-offs and examples.",
+            "score": 88,
+            "feedback": "Solid explanation of trade-offs."
+          },
+          {
+            "question_text": "Explain concept 12 in distributed systems.",
+            "user_answer": "Candidate response for question 12 covering trade-offs and examples.",
+            "score": 89,
+            "feedback": "Good examples illustrating key concepts."
+          },
+          {
+            "question_text": "Explain concept 13 in distributed systems.",
+            "user_answer": "Candidate response for question 13 covering trade-offs and examples.",
+            "score": 86,
+            "feedback": "Well-reasoned response covering core principles."
+          },
+          {
+            "question_text": "Explain concept 14 in distributed systems.",
+            "user_answer": "Candidate response for question 14 covering trade-offs and examples.",
+            "score": 88,
+            "feedback": "Strong analytical approach."
+          },
+          {
+            "question_text": "Explain concept 15 in distributed systems.",
+            "user_answer": "Candidate response for question 15 covering trade-offs and examples.",
+            "score": 90,
+            "feedback": "Clear and thorough explanation."
+          },
+          {
+            "question_text": "Explain concept 16 in distributed systems.",
+            "user_answer": "Candidate response for question 16 covering trade-offs and examples.",
+            "score": 87,
+            "feedback": "Effective trade-off evaluation."
+          },
+          {
+            "question_text": "Explain concept 17 in distributed systems.",
+            "user_answer": "Candidate response for question 17 covering trade-offs and examples.",
+            "score": 89,
+            "feedback": "Good technical depth shown."
+          },
+          {
+            "question_text": "Explain concept 18 in distributed systems.",
+            "user_answer": "Candidate response for question 18 covering trade-offs and examples.",
+            "score": 88,
+            "feedback": "Solid response with clear examples."
+          },
+          {
+            "question_text": "Explain concept 19 in distributed systems.",
+            "user_answer": "Candidate response for question 19 covering trade-offs and examples.",
+            "score": 90,
+            "feedback": "Comprehensive answer with strong insights."
+          },
+          {
+            "question_text": "Explain concept 20 in distributed systems.",
+            "user_answer": "Candidate response for question 20 covering trade-offs and examples.",
+            "score": 88,
+            "feedback": "Clear synthesis of concepts and trade-offs."
+          }
+        ]
+      }
+    },
+    {
+      "condition": "baseline_text",
+      "run_index": 8,
+      "metrics": {
+        "run_index": 8,
+        "condition": "baseline_text",
+        "api_success": true,
+        "model_question_count": 20,
+        "expected_question_count": 20,
+        "text_join_failures": 0,
+        "silent_zero_score_fallbacks": 0,
+        "wording_changes_in_model_output": 0,
+        "exact_question_text_matches_in_model_output": 20,
+        "scores_preserved_through_association": 20,
+        "scores_lost_through_association": 0,
+        "rejected": false,
+        "duplicate_model_answer_ids": 0,
+        "missing_answer_ids": 0,
+        "unknown_answer_ids": 0,
+        "order_preserved": true
+      },
+      "failure": null,
+      "model_response": {
+        "overall_score": 8.5,
+        "score_breakdown": {
+          "technical": 8.5,
+          "communication": 8,
+          "problem_solving": 8.5,
+          "confidence": 9
+        },
+        "questions": [
+          {
+            "question_text": "Explain concept 1 in distributed systems.",
+            "user_answer": "Candidate response for question 1 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good explanation of the core concept, including trade-offs and practical examples."
+          },
+          {
+            "question_text": "Explain concept 2 in distributed systems.",
+            "user_answer": "Candidate response for question 2 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Well-structured answer addressing trade-offs clearly."
+          },
+          {
+            "question_text": "Explain concept 3 in distributed systems.",
+            "user_answer": "Candidate response for question 3 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear insights with relevant real-world examples provided."
+          },
+          {
+            "question_text": "Explain concept 4 in distributed systems.",
+            "user_answer": "Candidate response for question 4 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Demonstrated good technical understanding and edge case consideration."
+          },
+          {
+            "question_text": "Explain concept 5 in distributed systems.",
+            "user_answer": "Candidate response for question 5 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Solid analysis of trade-offs in distributed environments."
+          },
+          {
+            "question_text": "Explain concept 6 in distributed systems.",
+            "user_answer": "Candidate response for question 6 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good coverage of theoretical and practical aspects."
+          },
+          {
+            "question_text": "Explain concept 7 in distributed systems.",
+            "user_answer": "Candidate response for question 7 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Accurate description of trade-offs and practical applications."
+          },
+          {
+            "question_text": "Explain concept 8 in distributed systems.",
+            "user_answer": "Candidate response for question 8 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Thorough explanation highlighting critical trade-offs."
+          },
+          {
+            "question_text": "Explain concept 9 in distributed systems.",
+            "user_answer": "Candidate response for question 9 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear communication of concepts and system design implications."
+          },
+          {
+            "question_text": "Explain concept 10 in distributed systems.",
+            "user_answer": "Candidate response for question 10 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Strong technical depth shown with comprehensive examples."
+          },
+          {
+            "question_text": "Explain concept 11 in distributed systems.",
+            "user_answer": "Candidate response for question 11 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Effective explanation covering necessary system parameters."
+          },
+          {
+            "question_text": "Explain concept 12 in distributed systems.",
+            "user_answer": "Candidate response for question 12 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good overview of core principles and trade-offs."
+          },
+          {
+            "question_text": "Explain concept 13 in distributed systems.",
+            "user_answer": "Candidate response for question 13 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear reasoning and solid examples given."
+          },
+          {
+            "question_text": "Explain concept 14 in distributed systems.",
+            "user_answer": "Candidate response for question 14 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Demonstrated clear problem-solving skills and domain knowledge."
+          },
+          {
+            "question_text": "Explain concept 15 in distributed systems.",
+            "user_answer": "Candidate response for question 15 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Comprehensive answer discussing trade-offs effectively."
+          },
+          {
+            "question_text": "Explain concept 16 in distributed systems.",
+            "user_answer": "Candidate response for question 16 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Well-articulated explanation with solid technical depth."
+          },
+          {
+            "question_text": "Explain concept 17 in distributed systems.",
+            "user_answer": "Candidate response for question 17 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good use of practical scenarios to explain distributed trade-offs."
+          },
+          {
+            "question_text": "Explain concept 18 in distributed systems.",
+            "user_answer": "Candidate response for question 18 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear, concise, and technically accurate response."
+          },
+          {
+            "question_text": "Explain concept 19 in distributed systems.",
+            "user_answer": "Candidate response for question 19 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Strong evaluation of trade-offs and implementation considerations."
+          },
+          {
+            "question_text": "Explain concept 20 in distributed systems.",
+            "user_answer": "Candidate response for question 20 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Excellent conclusion highlighting practical distributed systems design."
+          }
+        ]
+      }
+    },
+    {
+      "condition": "baseline_text",
+      "run_index": 9,
+      "metrics": {
+        "run_index": 9,
+        "condition": "baseline_text",
+        "api_success": true,
+        "model_question_count": 20,
+        "expected_question_count": 20,
+        "text_join_failures": 0,
+        "silent_zero_score_fallbacks": 0,
+        "wording_changes_in_model_output": 0,
+        "exact_question_text_matches_in_model_output": 20,
+        "scores_preserved_through_association": 20,
+        "scores_lost_through_association": 0,
+        "rejected": false,
+        "duplicate_model_answer_ids": 0,
+        "missing_answer_ids": 0,
+        "unknown_answer_ids": 0,
+        "order_preserved": true
+      },
+      "failure": null,
+      "model_response": {
+        "overall_score": 8.5,
+        "score_breakdown": {
+          "technical": 8.5,
+          "communication": 8.5,
+          "problem_solving": 8,
+          "confidence": 8.5
+        },
+        "questions": [
+          {
+            "question_text": "Explain concept 1 in distributed systems.",
+            "user_answer": "Candidate response for question 1 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good overview of trade-offs and clear practical examples provided."
+          },
+          {
+            "question_text": "Explain concept 2 in distributed systems.",
+            "user_answer": "Candidate response for question 2 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear explanation with solid real-world context."
+          },
+          {
+            "question_text": "Explain concept 3 in distributed systems.",
+            "user_answer": "Candidate response for question 3 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Well-structured answer discussing relevant trade-offs."
+          },
+          {
+            "question_text": "Explain concept 4 in distributed systems.",
+            "user_answer": "Candidate response for question 4 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good depth in identifying key architectural trade-offs."
+          },
+          {
+            "question_text": "Explain concept 5 in distributed systems.",
+            "user_answer": "Candidate response for question 5 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Comprehensive answer with relevant examples."
+          },
+          {
+            "question_text": "Explain concept 6 in distributed systems.",
+            "user_answer": "Candidate response for question 6 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Demonstrated good technical clarity and insight."
+          },
+          {
+            "question_text": "Explain concept 7 in distributed systems.",
+            "user_answer": "Candidate response for question 7 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Well explained with accurate trade-off analysis."
+          },
+          {
+            "question_text": "Explain concept 8 in distributed systems.",
+            "user_answer": "Candidate response for question 8 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear explanation covering key nuances."
+          },
+          {
+            "question_text": "Explain concept 9 in distributed systems.",
+            "user_answer": "Candidate response for question 9 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Solid answer with clear contextual examples."
+          },
+          {
+            "question_text": "Explain concept 10 in distributed systems.",
+            "user_answer": "Candidate response for question 10 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good communication of concepts and system trade-offs."
+          },
+          {
+            "question_text": "Explain concept 11 in distributed systems.",
+            "user_answer": "Candidate response for question 11 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Effective explanation highlighting main advantages and disadvantages."
+          },
+          {
+            "question_text": "Explain concept 12 in distributed systems.",
+            "user_answer": "Candidate response for question 12 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear articulation of system behavior and examples."
+          },
+          {
+            "question_text": "Explain concept 13 in distributed systems.",
+            "user_answer": "Candidate response for question 13 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Strong response addressing trade-offs effectively."
+          },
+          {
+            "question_text": "Explain concept 14 in distributed systems.",
+            "user_answer": "Candidate response for question 14 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Well-rounded answer with good technical detail."
+          },
+          {
+            "question_text": "Explain concept 15 in distributed systems.",
+            "user_answer": "Candidate response for question 15 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Accurate discussion of key distributed system principles."
+          },
+          {
+            "question_text": "Explain concept 16 in distributed systems.",
+            "user_answer": "Candidate response for question 16 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good explanation with practical architectural trade-offs."
+          },
+          {
+            "question_text": "Explain concept 17 in distributed systems.",
+            "user_answer": "Candidate response for question 17 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear and logical response with helpful examples."
+          },
+          {
+            "question_text": "Explain concept 18 in distributed systems.",
+            "user_answer": "Candidate response for question 18 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Strong technical understanding demonstrated."
+          },
+          {
+            "question_text": "Explain concept 19 in distributed systems.",
+            "user_answer": "Candidate response for question 19 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Comprehensive answer with concise reasoning."
+          },
+          {
+            "question_text": "Explain concept 20 in distributed systems.",
+            "user_answer": "Candidate response for question 20 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Well articulated explanation of key trade-offs."
+          }
+        ]
+      }
+    },
+    {
+      "condition": "baseline_text",
+      "run_index": 10,
+      "metrics": {
+        "run_index": 10,
+        "condition": "baseline_text",
+        "api_success": true,
+        "model_question_count": 20,
+        "expected_question_count": 20,
+        "text_join_failures": 0,
+        "silent_zero_score_fallbacks": 0,
+        "wording_changes_in_model_output": 0,
+        "exact_question_text_matches_in_model_output": 20,
+        "scores_preserved_through_association": 20,
+        "scores_lost_through_association": 0,
+        "rejected": false,
+        "duplicate_model_answer_ids": 0,
+        "missing_answer_ids": 0,
+        "unknown_answer_ids": 0,
+        "order_preserved": true
+      },
+      "failure": null,
+      "model_response": {
+        "overall_score": 8.5,
+        "score_breakdown": {
+          "technical": 8.8,
+          "communication": 8.5,
+          "problem_solving": 8.2,
+          "confidence": 8.5
+        },
+        "questions": [
+          {
+            "question_text": "Explain concept 1 in distributed systems.",
+            "user_answer": "Candidate response for question 1 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good overview of trade-offs and relevant examples provided."
+          },
+          {
+            "question_text": "Explain concept 2 in distributed systems.",
+            "user_answer": "Candidate response for question 2 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear explanation with solid practical examples."
+          },
+          {
+            "question_text": "Explain concept 3 in distributed systems.",
+            "user_answer": "Candidate response for question 3 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Well-structured answer addressing core trade-offs."
+          },
+          {
+            "question_text": "Explain concept 4 in distributed systems.",
+            "user_answer": "Candidate response for question 4 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Demonstrated good technical understanding."
+          },
+          {
+            "question_text": "Explain concept 5 in distributed systems.",
+            "user_answer": "Candidate response for question 5 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear communication of technical concepts."
+          },
+          {
+            "question_text": "Explain concept 6 in distributed systems.",
+            "user_answer": "Candidate response for question 6 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Sufficient explanation of trade-offs."
+          },
+          {
+            "question_text": "Explain concept 7 in distributed systems.",
+            "user_answer": "Candidate response for question 7 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good use of practical examples."
+          },
+          {
+            "question_text": "Explain concept 8 in distributed systems.",
+            "user_answer": "Candidate response for question 8 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Solid reasoning behind trade-off decisions."
+          },
+          {
+            "question_text": "Explain concept 9 in distributed systems.",
+            "user_answer": "Candidate response for question 9 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Accurately identified core distributed system challenges."
+          },
+          {
+            "question_text": "Explain concept 10 in distributed systems.",
+            "user_answer": "Candidate response for question 10 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear concise answer covering key aspects."
+          },
+          {
+            "question_text": "Explain concept 11 in distributed systems.",
+            "user_answer": "Candidate response for question 11 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation of underlying principles."
+          },
+          {
+            "question_text": "Explain concept 12 in distributed systems.",
+            "user_answer": "Candidate response for question 12 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Effective communication of trade-offs."
+          },
+          {
+            "question_text": "Explain concept 13 in distributed systems.",
+            "user_answer": "Candidate response for question 13 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Well-articulated response with solid examples."
+          },
+          {
+            "question_text": "Explain concept 14 in distributed systems.",
+            "user_answer": "Candidate response for question 14 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good analytical approach to system trade-offs."
+          },
+          {
+            "question_text": "Explain concept 15 in distributed systems.",
+            "user_answer": "Candidate response for question 15 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear and structured response."
+          },
+          {
+            "question_text": "Explain concept 16 in distributed systems.",
+            "user_answer": "Candidate response for question 16 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Comprehensive explanation covering architectural considerations."
+          },
+          {
+            "question_text": "Explain concept 17 in distributed systems.",
+            "user_answer": "Candidate response for question 17 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Demonstrated strong theoretical knowledge."
+          },
+          {
+            "question_text": "Explain concept 18 in distributed systems.",
+            "user_answer": "Candidate response for question 18 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good practical insights shared."
+          },
+          {
+            "question_text": "Explain concept 19 in distributed systems.",
+            "user_answer": "Candidate response for question 19 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear discussion of system trade-offs."
+          },
+          {
+            "question_text": "Explain concept 20 in distributed systems.",
+            "user_answer": "Candidate response for question 20 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Solid wrap-up answer addressing technical details."
+          }
+        ]
+      }
+    },
+    {
+      "condition": "revised_answer_id",
+      "run_index": 1,
+      "metrics": {
+        "run_index": 1,
+        "condition": "revised_answer_id",
+        "api_success": true,
+        "model_question_count": 20,
+        "expected_question_count": 20,
+        "text_join_failures": 0,
+        "silent_zero_score_fallbacks": 0,
+        "wording_changes_in_model_output": 0,
+        "exact_question_text_matches_in_model_output": 20,
+        "scores_preserved_through_association": 20,
+        "scores_lost_through_association": 0,
+        "rejected": false,
+        "duplicate_model_answer_ids": 0,
+        "missing_answer_ids": 0,
+        "unknown_answer_ids": 0,
+        "order_preserved": true
+      },
+      "failure": null,
+      "model_response": {
+        "overall_score": 8.5,
+        "score_breakdown": {
+          "technical": 8.5,
+          "communication": 8.5,
+          "problem_solving": 8,
+          "confidence": 8.5
+        },
+        "questions": [
+          {
+            "question_text": "Explain concept 1 in distributed systems.",
+            "user_answer": "Candidate response for question 1 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation covering key trade-offs and real-world examples.",
+            "answer_id": "507f1f77bcf86cd79943900a"
+          },
+          {
+            "question_text": "Explain concept 2 in distributed systems.",
+            "user_answer": "Candidate response for question 2 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Solid overview with appropriate practical examples.",
+            "answer_id": "507f1f77bcf86cd79943900b"
+          },
+          {
+            "question_text": "Explain concept 3 in distributed systems.",
+            "user_answer": "Candidate response for question 3 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Well-structured answer addressing system trade-offs.",
+            "answer_id": "507f1f77bcf86cd79943900c"
+          },
+          {
+            "question_text": "Explain concept 4 in distributed systems.",
+            "user_answer": "Candidate response for question 4 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear understanding demonstrated through relevant examples.",
+            "answer_id": "507f1f77bcf86cd79943900d"
+          },
+          {
+            "question_text": "Explain concept 5 in distributed systems.",
+            "user_answer": "Candidate response for question 5 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good depth on trade-offs involved in distributed architecture.",
+            "answer_id": "507f1f77bcf86cd79943900e"
+          },
+          {
+            "question_text": "Explain concept 6 in distributed systems.",
+            "user_answer": "Candidate response for question 6 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Accurate analysis of trade-offs and applications.",
+            "answer_id": "507f1f77bcf86cd79943900f"
+          },
+          {
+            "question_text": "Explain concept 7 in distributed systems.",
+            "user_answer": "Candidate response for question 7 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Effective explanation with solid examples.",
+            "answer_id": "507f1f77bcf86cd799439010"
+          },
+          {
+            "question_text": "Explain concept 8 in distributed systems.",
+            "user_answer": "Candidate response for question 8 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Comprehensive answer highlighting important system trade-offs.",
+            "answer_id": "507f1f77bcf86cd799439011"
+          },
+          {
+            "question_text": "Explain concept 9 in distributed systems.",
+            "user_answer": "Candidate response for question 9 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response that balances technical details and examples.",
+            "answer_id": "507f1f77bcf86cd799439012"
+          },
+          {
+            "question_text": "Explain concept 10 in distributed systems.",
+            "user_answer": "Candidate response for question 10 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear explanation of key concepts and architectural trade-offs.",
+            "answer_id": "507f1f77bcf86cd799439013"
+          },
+          {
+            "question_text": "Explain concept 11 in distributed systems.",
+            "user_answer": "Candidate response for question 11 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Demonstrates sound theoretical and practical knowledge.",
+            "answer_id": "507f1f77bcf86cd799439014"
+          },
+          {
+            "question_text": "Explain concept 12 in distributed systems.",
+            "user_answer": "Candidate response for question 12 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Well-reasoned response covering core trade-offs.",
+            "answer_id": "507f1f77bcf86cd799439015"
+          },
+          {
+            "question_text": "Explain concept 13 in distributed systems.",
+            "user_answer": "Candidate response for question 13 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good coverage of underlying mechanisms and trade-offs.",
+            "answer_id": "507f1f77bcf86cd799439016"
+          },
+          {
+            "question_text": "Explain concept 14 in distributed systems.",
+            "user_answer": "Candidate response for question 14 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear communication of complex distributed concepts.",
+            "answer_id": "507f1f77bcf86cd799439017"
+          },
+          {
+            "question_text": "Explain concept 15 in distributed systems.",
+            "user_answer": "Candidate response for question 15 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Solid analysis with good contextual examples.",
+            "answer_id": "507f1f77bcf86cd799439018"
+          },
+          {
+            "question_text": "Explain concept 16 in distributed systems.",
+            "user_answer": "Candidate response for question 16 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Well-articulated point regarding design trade-offs.",
+            "answer_id": "507f1f77bcf86cd799439019"
+          },
+          {
+            "question_text": "Explain concept 17 in distributed systems.",
+            "user_answer": "Candidate response for question 17 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear, concise, and structured answer.",
+            "answer_id": "507f1f77bcf86cd79943901a"
+          },
+          {
+            "question_text": "Explain concept 18 in distributed systems.",
+            "user_answer": "Candidate response for question 18 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good critical thinking shown on system trade-offs.",
+            "answer_id": "507f1f77bcf86cd79943901b"
+          },
+          {
+            "question_text": "Explain concept 19 in distributed systems.",
+            "user_answer": "Candidate response for question 19 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Effective description of key principles and examples.",
+            "answer_id": "507f1f77bcf86cd79943901c"
+          },
+          {
+            "question_text": "Explain concept 20 in distributed systems.",
+            "user_answer": "Candidate response for question 20 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Strong conclusion with solid examples and trade-off analysis.",
+            "answer_id": "507f1f77bcf86cd79943901d"
+          }
+        ]
+      }
+    },
+    {
+      "condition": "revised_answer_id",
+      "run_index": 2,
+      "metrics": {
+        "run_index": 2,
+        "condition": "revised_answer_id",
+        "api_success": true,
+        "model_question_count": 20,
+        "expected_question_count": 20,
+        "text_join_failures": 0,
+        "silent_zero_score_fallbacks": 0,
+        "wording_changes_in_model_output": 0,
+        "exact_question_text_matches_in_model_output": 20,
+        "scores_preserved_through_association": 20,
+        "scores_lost_through_association": 0,
+        "rejected": false,
+        "duplicate_model_answer_ids": 0,
+        "missing_answer_ids": 0,
+        "unknown_answer_ids": 0,
+        "order_preserved": true
+      },
+      "failure": null,
+      "model_response": {
+        "overall_score": 8.5,
+        "score_breakdown": {
+          "technical": 8.5,
+          "communication": 8,
+          "problem_solving": 8.5,
+          "confidence": 8
+        },
+        "questions": [
+          {
+            "question_text": "Explain concept 1 in distributed systems.",
+            "user_answer": "Candidate response for question 1 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation covering key trade-offs and relevant examples.",
+            "answer_id": "507f1f77bcf86cd79943900a"
+          },
+          {
+            "question_text": "Explain concept 2 in distributed systems.",
+            "user_answer": "Candidate response for question 2 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear overview provided with solid architectural trade-offs.",
+            "answer_id": "507f1f77bcf86cd79943900b"
+          },
+          {
+            "question_text": "Explain concept 3 in distributed systems.",
+            "user_answer": "Candidate response for question 3 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Well-structured answer discussing real-world application and examples.",
+            "answer_id": "507f1f77bcf86cd79943900c"
+          },
+          {
+            "question_text": "Explain concept 4 in distributed systems.",
+            "user_answer": "Candidate response for question 4 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Demonstrated understanding of core trade-offs.",
+            "answer_id": "507f1f77bcf86cd79943900d"
+          },
+          {
+            "question_text": "Explain concept 5 in distributed systems.",
+            "user_answer": "Candidate response for question 5 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Appropriate detail and accurate comparison of alternatives.",
+            "answer_id": "507f1f77bcf86cd79943900e"
+          },
+          {
+            "question_text": "Explain concept 6 in distributed systems.",
+            "user_answer": "Candidate response for question 6 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Solid explanation of system behavior and trade-offs.",
+            "answer_id": "507f1f77bcf86cd79943900f"
+          },
+          {
+            "question_text": "Explain concept 7 in distributed systems.",
+            "user_answer": "Candidate response for question 7 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good answer addressing potential edge cases and performance impacts.",
+            "answer_id": "507f1f77bcf86cd799439010"
+          },
+          {
+            "question_text": "Explain concept 8 in distributed systems.",
+            "user_answer": "Candidate response for question 8 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear explanation with effective practical examples.",
+            "answer_id": "507f1f77bcf86cd799439011"
+          },
+          {
+            "question_text": "Explain concept 9 in distributed systems.",
+            "user_answer": "Candidate response for question 9 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Thorough coverage of system trade-offs.",
+            "answer_id": "507f1f77bcf86cd799439012"
+          },
+          {
+            "question_text": "Explain concept 10 in distributed systems.",
+            "user_answer": "Candidate response for question 10 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Accurate analysis of distributed considerations.",
+            "answer_id": "507f1f77bcf86cd799439013"
+          },
+          {
+            "question_text": "Explain concept 11 in distributed systems.",
+            "user_answer": "Candidate response for question 11 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Comprehensive answer detailing trade-offs.",
+            "answer_id": "507f1f77bcf86cd799439014"
+          },
+          {
+            "question_text": "Explain concept 12 in distributed systems.",
+            "user_answer": "Candidate response for question 12 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Strong response highlighting implementation challenges.",
+            "answer_id": "507f1f77bcf86cd799439015"
+          },
+          {
+            "question_text": "Explain concept 13 in distributed systems.",
+            "user_answer": "Candidate response for question 13 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Well-articulated answer covering critical trade-offs.",
+            "answer_id": "507f1f77bcf86cd799439016"
+          },
+          {
+            "question_text": "Explain concept 14 in distributed systems.",
+            "user_answer": "Candidate response for question 14 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good balance between theoretical concept and practical usage.",
+            "answer_id": "507f1f77bcf86cd799439017"
+          },
+          {
+            "question_text": "Explain concept 15 in distributed systems.",
+            "user_answer": "Candidate response for question 15 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Effective explanation of key architectural choices.",
+            "answer_id": "507f1f77bcf86cd799439018"
+          },
+          {
+            "question_text": "Explain concept 16 in distributed systems.",
+            "user_answer": "Candidate response for question 16 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear insights into distributed system behavior.",
+            "answer_id": "507f1f77bcf86cd799439019"
+          },
+          {
+            "question_text": "Explain concept 17 in distributed systems.",
+            "user_answer": "Candidate response for question 17 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Well-reasoned trade-offs discussed in depth.",
+            "answer_id": "507f1f77bcf86cd79943901a"
+          },
+          {
+            "question_text": "Explain concept 18 in distributed systems.",
+            "user_answer": "Candidate response for question 18 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Accurate discussion of trade-offs and practical scenarios.",
+            "answer_id": "507f1f77bcf86cd79943901b"
+          },
+          {
+            "question_text": "Explain concept 19 in distributed systems.",
+            "user_answer": "Candidate response for question 19 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Solid theoretical foundation demonstrated.",
+            "answer_id": "507f1f77bcf86cd79943901c"
+          },
+          {
+            "question_text": "Explain concept 20 in distributed systems.",
+            "user_answer": "Candidate response for question 20 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Concise and effective explanation of distributed concepts.",
+            "answer_id": "507f1f77bcf86cd79943901d"
+          }
+        ]
+      }
+    },
+    {
+      "condition": "revised_answer_id",
+      "run_index": 3,
+      "metrics": {
+        "run_index": 3,
+        "condition": "revised_answer_id",
+        "api_success": true,
+        "model_question_count": 20,
+        "expected_question_count": 20,
+        "text_join_failures": 0,
+        "silent_zero_score_fallbacks": 0,
+        "wording_changes_in_model_output": 0,
+        "exact_question_text_matches_in_model_output": 20,
+        "scores_preserved_through_association": 20,
+        "scores_lost_through_association": 0,
+        "rejected": false,
+        "duplicate_model_answer_ids": 0,
+        "missing_answer_ids": 0,
+        "unknown_answer_ids": 0,
+        "order_preserved": true
+      },
+      "failure": null,
+      "model_response": {
+        "overall_score": 8.5,
+        "score_breakdown": {
+          "technical": 8.5,
+          "communication": 8,
+          "problem_solving": 8.5,
+          "confidence": 8
+        },
+        "questions": [
+          {
+            "question_text": "Explain concept 1 in distributed systems.",
+            "user_answer": "Candidate response for question 1 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation of trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd79943900a"
+          },
+          {
+            "question_text": "Explain concept 2 in distributed systems.",
+            "user_answer": "Candidate response for question 2 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation of trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd79943900b"
+          },
+          {
+            "question_text": "Explain concept 3 in distributed systems.",
+            "user_answer": "Candidate response for question 3 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation of trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd79943900c"
+          },
+          {
+            "question_text": "Explain concept 4 in distributed systems.",
+            "user_answer": "Candidate response for question 4 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation of trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd79943900d"
+          },
+          {
+            "question_text": "Explain concept 5 in distributed systems.",
+            "user_answer": "Candidate response for question 5 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation of trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd79943900e"
+          },
+          {
+            "question_text": "Explain concept 6 in distributed systems.",
+            "user_answer": "Candidate response for question 6 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation of trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd79943900f"
+          },
+          {
+            "question_text": "Explain concept 7 in distributed systems.",
+            "user_answer": "Candidate response for question 7 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation of trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd799439010"
+          },
+          {
+            "question_text": "Explain concept 8 in distributed systems.",
+            "user_answer": "Candidate response for question 8 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation of trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd799439011"
+          },
+          {
+            "question_text": "Explain concept 9 in distributed systems.",
+            "user_answer": "Candidate response for question 9 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation of trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd799439012"
+          },
+          {
+            "question_text": "Explain concept 10 in distributed systems.",
+            "user_answer": "Candidate response for question 10 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation of trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd799439013"
+          },
+          {
+            "question_text": "Explain concept 11 in distributed systems.",
+            "user_answer": "Candidate response for question 11 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation of trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd799439014"
+          },
+          {
+            "question_text": "Explain concept 12 in distributed systems.",
+            "user_answer": "Candidate response for question 12 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation of trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd799439015"
+          },
+          {
+            "question_text": "Explain concept 13 in distributed systems.",
+            "user_answer": "Candidate response for question 13 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation of trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd799439016"
+          },
+          {
+            "question_text": "Explain concept 14 in distributed systems.",
+            "user_answer": "Candidate response for question 14 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation of trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd799439017"
+          },
+          {
+            "question_text": "Explain concept 15 in distributed systems.",
+            "user_answer": "Candidate response for question 15 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation of trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd799439018"
+          },
+          {
+            "question_text": "Explain concept 16 in distributed systems.",
+            "user_answer": "Candidate response for question 16 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation of trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd799439019"
+          },
+          {
+            "question_text": "Explain concept 17 in distributed systems.",
+            "user_answer": "Candidate response for question 17 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation of trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd79943901a"
+          },
+          {
+            "question_text": "Explain concept 18 in distributed systems.",
+            "user_answer": "Candidate response for question 18 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation of trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd79943901b"
+          },
+          {
+            "question_text": "Explain concept 19 in distributed systems.",
+            "user_answer": "Candidate response for question 19 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation of trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd79943901c"
+          },
+          {
+            "question_text": "Explain concept 20 in distributed systems.",
+            "user_answer": "Candidate response for question 20 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation of trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd79943901d"
+          }
+        ]
+      }
+    },
+    {
+      "condition": "revised_answer_id",
+      "run_index": 4,
+      "metrics": {
+        "run_index": 4,
+        "condition": "revised_answer_id",
+        "api_success": true,
+        "model_question_count": 20,
+        "expected_question_count": 20,
+        "text_join_failures": 0,
+        "silent_zero_score_fallbacks": 0,
+        "wording_changes_in_model_output": 0,
+        "exact_question_text_matches_in_model_output": 20,
+        "scores_preserved_through_association": 20,
+        "scores_lost_through_association": 0,
+        "rejected": false,
+        "duplicate_model_answer_ids": 0,
+        "missing_answer_ids": 0,
+        "unknown_answer_ids": 0,
+        "order_preserved": true
+      },
+      "failure": null,
+      "model_response": {
+        "overall_score": 8.5,
+        "score_breakdown": {
+          "technical": 85,
+          "communication": 88,
+          "problem_solving": 82,
+          "confidence": 85
+        },
+        "questions": [
+          {
+            "question_text": "Explain concept 1 in distributed systems.",
+            "user_answer": "Candidate response for question 1 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation covering trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd79943900a"
+          },
+          {
+            "question_text": "Explain concept 2 in distributed systems.",
+            "user_answer": "Candidate response for question 2 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation covering trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd79943900b"
+          },
+          {
+            "question_text": "Explain concept 3 in distributed systems.",
+            "user_answer": "Candidate response for question 3 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation covering trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd79943900c"
+          },
+          {
+            "question_text": "Explain concept 4 in distributed systems.",
+            "user_answer": "Candidate response for question 4 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation covering trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd79943900d"
+          },
+          {
+            "question_text": "Explain concept 5 in distributed systems.",
+            "user_answer": "Candidate response for question 5 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation covering trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd79943900e"
+          },
+          {
+            "question_text": "Explain concept 6 in distributed systems.",
+            "user_answer": "Candidate response for question 6 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation covering trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd79943900f"
+          },
+          {
+            "question_text": "Explain concept 7 in distributed systems.",
+            "user_answer": "Candidate response for question 7 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation covering trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd799439010"
+          },
+          {
+            "question_text": "Explain concept 8 in distributed systems.",
+            "user_answer": "Candidate response for question 8 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation covering trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd799439011"
+          },
+          {
+            "question_text": "Explain concept 9 in distributed systems.",
+            "user_answer": "Candidate response for question 9 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation covering trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd799439012"
+          },
+          {
+            "question_text": "Explain concept 10 in distributed systems.",
+            "user_answer": "Candidate response for question 10 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation covering trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd799439013"
+          },
+          {
+            "question_text": "Explain concept 11 in distributed systems.",
+            "user_answer": "Candidate response for question 11 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation covering trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd799439014"
+          },
+          {
+            "question_text": "Explain concept 12 in distributed systems.",
+            "user_answer": "Candidate response for question 12 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation covering trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd799439015"
+          },
+          {
+            "question_text": "Explain concept 13 in distributed systems.",
+            "user_answer": "Candidate response for question 13 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation covering trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd799439016"
+          },
+          {
+            "question_text": "Explain concept 14 in distributed systems.",
+            "user_answer": "Candidate response for question 14 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation covering trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd799439017"
+          },
+          {
+            "question_text": "Explain concept 15 in distributed systems.",
+            "user_answer": "Candidate response for question 15 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation covering trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd799439018"
+          },
+          {
+            "question_text": "Explain concept 16 in distributed systems.",
+            "user_answer": "Candidate response for question 16 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation covering trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd799439019"
+          },
+          {
+            "question_text": "Explain concept 17 in distributed systems.",
+            "user_answer": "Candidate response for question 17 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation covering trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd79943901a"
+          },
+          {
+            "question_text": "Explain concept 18 in distributed systems.",
+            "user_answer": "Candidate response for question 18 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation covering trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd79943901b"
+          },
+          {
+            "question_text": "Explain concept 19 in distributed systems.",
+            "user_answer": "Candidate response for question 19 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation covering trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd79943901c"
+          },
+          {
+            "question_text": "Explain concept 20 in distributed systems.",
+            "user_answer": "Candidate response for question 20 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation covering trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd79943901d"
+          }
+        ]
+      }
+    },
+    {
+      "condition": "revised_answer_id",
+      "run_index": 5,
+      "metrics": {
+        "run_index": 5,
+        "condition": "revised_answer_id",
+        "api_success": true,
+        "model_question_count": 20,
+        "expected_question_count": 20,
+        "text_join_failures": 0,
+        "silent_zero_score_fallbacks": 0,
+        "wording_changes_in_model_output": 0,
+        "exact_question_text_matches_in_model_output": 20,
+        "scores_preserved_through_association": 20,
+        "scores_lost_through_association": 0,
+        "rejected": false,
+        "duplicate_model_answer_ids": 0,
+        "missing_answer_ids": 0,
+        "unknown_answer_ids": 0,
+        "order_preserved": true
+      },
+      "failure": null,
+      "model_response": {
+        "overall_score": 8.5,
+        "score_breakdown": {
+          "technical": 8.5,
+          "communication": 8,
+          "problem_solving": 8.5,
+          "confidence": 8
+        },
+        "questions": [
+          {
+            "question_text": "Explain concept 1 in distributed systems.",
+            "user_answer": "Candidate response for question 1 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation of trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd79943900a"
+          },
+          {
+            "question_text": "Explain concept 2 in distributed systems.",
+            "user_answer": "Candidate response for question 2 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Solid answer demonstrating understanding of distributed systems trade-offs.",
+            "answer_id": "507f1f77bcf86cd79943900b"
+          },
+          {
+            "question_text": "Explain concept 3 in distributed systems.",
+            "user_answer": "Candidate response for question 3 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Well structured response with clear trade-off analysis.",
+            "answer_id": "507f1f77bcf86cd79943900c"
+          },
+          {
+            "question_text": "Explain concept 4 in distributed systems.",
+            "user_answer": "Candidate response for question 4 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear articulation of key concepts and practical examples.",
+            "answer_id": "507f1f77bcf86cd79943900d"
+          },
+          {
+            "question_text": "Explain concept 5 in distributed systems.",
+            "user_answer": "Candidate response for question 5 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Effective explanation of trade-offs involved in system design.",
+            "answer_id": "507f1f77bcf86cd79943900e"
+          },
+          {
+            "question_text": "Explain concept 6 in distributed systems.",
+            "user_answer": "Candidate response for question 6 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good depth in covering fundamental distributed concepts.",
+            "answer_id": "507f1f77bcf86cd79943900f"
+          },
+          {
+            "question_text": "Explain concept 7 in distributed systems.",
+            "user_answer": "Candidate response for question 7 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Thorough coverage of system trade-offs and example use cases.",
+            "answer_id": "507f1f77bcf86cd799439010"
+          },
+          {
+            "question_text": "Explain concept 8 in distributed systems.",
+            "user_answer": "Candidate response for question 8 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Demonstrated strong theoretical and practical knowledge.",
+            "answer_id": "507f1f77bcf86cd799439011"
+          },
+          {
+            "question_text": "Explain concept 9 in distributed systems.",
+            "user_answer": "Candidate response for question 9 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear logic and strong understanding of trade-offs.",
+            "answer_id": "507f1f77bcf86cd799439012"
+          },
+          {
+            "question_text": "Explain concept 10 in distributed systems.",
+            "user_answer": "Candidate response for question 10 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Comprehensive answer with relevant real-world examples.",
+            "answer_id": "507f1f77bcf86cd799439013"
+          },
+          {
+            "question_text": "Explain concept 11 in distributed systems.",
+            "user_answer": "Candidate response for question 11 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Accurate analysis of architectural choices and trade-offs.",
+            "answer_id": "507f1f77bcf86cd799439014"
+          },
+          {
+            "question_text": "Explain concept 12 in distributed systems.",
+            "user_answer": "Candidate response for question 12 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good evaluation of trade-offs in distributed scenarios.",
+            "answer_id": "507f1f77bcf86cd799439015"
+          },
+          {
+            "question_text": "Explain concept 13 in distributed systems.",
+            "user_answer": "Candidate response for question 13 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Solid reasoning behind trade-off decisions.",
+            "answer_id": "507f1f77bcf86cd799439016"
+          },
+          {
+            "question_text": "Explain concept 14 in distributed systems.",
+            "user_answer": "Candidate response for question 14 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Appropriately addressed key challenges and mitigation strategies.",
+            "answer_id": "507f1f77bcf86cd799439017"
+          },
+          {
+            "question_text": "Explain concept 15 in distributed systems.",
+            "user_answer": "Candidate response for question 15 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear and structured explanation of the topic.",
+            "answer_id": "507f1f77bcf86cd799439018"
+          },
+          {
+            "question_text": "Explain concept 16 in distributed systems.",
+            "user_answer": "Candidate response for question 16 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Strong grasp of distributed system fundamentals demonstrated.",
+            "answer_id": "507f1f77bcf86cd799439019"
+          },
+          {
+            "question_text": "Explain concept 17 in distributed systems.",
+            "user_answer": "Candidate response for question 17 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Well-rounded answer covering both advantages and disadvantages.",
+            "answer_id": "507f1f77bcf86cd79943901a"
+          },
+          {
+            "question_text": "Explain concept 18 in distributed systems.",
+            "user_answer": "Candidate response for question 18 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Effective communication of technical trade-offs.",
+            "answer_id": "507f1f77bcf86cd79943901b"
+          },
+          {
+            "question_text": "Explain concept 19 in distributed systems.",
+            "user_answer": "Candidate response for question 19 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear breakdown of trade-offs and practical implications.",
+            "answer_id": "507f1f77bcf86cd79943901c"
+          },
+          {
+            "question_text": "Explain concept 20 in distributed systems.",
+            "user_answer": "Candidate response for question 20 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Comprehensive answer highlighting important considerations.",
+            "answer_id": "507f1f77bcf86cd79943901d"
+          }
+        ]
+      }
+    },
+    {
+      "condition": "revised_answer_id",
+      "run_index": 6,
+      "metrics": {
+        "run_index": 6,
+        "condition": "revised_answer_id",
+        "api_success": true,
+        "model_question_count": 20,
+        "expected_question_count": 20,
+        "text_join_failures": 0,
+        "silent_zero_score_fallbacks": 0,
+        "wording_changes_in_model_output": 0,
+        "exact_question_text_matches_in_model_output": 20,
+        "scores_preserved_through_association": 20,
+        "scores_lost_through_association": 0,
+        "rejected": false,
+        "duplicate_model_answer_ids": 0,
+        "missing_answer_ids": 0,
+        "unknown_answer_ids": 0,
+        "order_preserved": true
+      },
+      "failure": null,
+      "model_response": {
+        "overall_score": 8.5,
+        "score_breakdown": {
+          "technical": 8.5,
+          "communication": 8.5,
+          "problem_solving": 8.5,
+          "confidence": 8.5
+        },
+        "questions": [
+          {
+            "question_text": "Explain concept 1 in distributed systems.",
+            "user_answer": "Candidate response for question 1 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good response covering key trade-offs and providing clear examples.",
+            "answer_id": "507f1f77bcf86cd79943900a"
+          },
+          {
+            "question_text": "Explain concept 2 in distributed systems.",
+            "user_answer": "Candidate response for question 2 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good response covering key trade-offs and providing clear examples.",
+            "answer_id": "507f1f77bcf86cd79943900b"
+          },
+          {
+            "question_text": "Explain concept 3 in distributed systems.",
+            "user_answer": "Candidate response for question 3 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good response covering key trade-offs and providing clear examples.",
+            "answer_id": "507f1f77bcf86cd79943900c"
+          },
+          {
+            "question_text": "Explain concept 4 in distributed systems.",
+            "user_answer": "Candidate response for question 4 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good response covering key trade-offs and providing clear examples.",
+            "answer_id": "507f1f77bcf86cd79943900d"
+          },
+          {
+            "question_text": "Explain concept 5 in distributed systems.",
+            "user_answer": "Candidate response for question 5 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good response covering key trade-offs and providing clear examples.",
+            "answer_id": "507f1f77bcf86cd79943900e"
+          },
+          {
+            "question_text": "Explain concept 6 in distributed systems.",
+            "user_answer": "Candidate response for question 6 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good response covering key trade-offs and providing clear examples.",
+            "answer_id": "507f1f77bcf86cd79943900f"
+          },
+          {
+            "question_text": "Explain concept 7 in distributed systems.",
+            "user_answer": "Candidate response for question 7 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good response covering key trade-offs and providing clear examples.",
+            "answer_id": "507f1f77bcf86cd799439010"
+          },
+          {
+            "question_text": "Explain concept 8 in distributed systems.",
+            "user_answer": "Candidate response for question 8 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good response covering key trade-offs and providing clear examples.",
+            "answer_id": "507f1f77bcf86cd799439011"
+          },
+          {
+            "question_text": "Explain concept 9 in distributed systems.",
+            "user_answer": "Candidate response for question 9 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good response covering key trade-offs and providing clear examples.",
+            "answer_id": "507f1f77bcf86cd799439012"
+          },
+          {
+            "question_text": "Explain concept 10 in distributed systems.",
+            "user_answer": "Candidate response for question 10 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good response covering key trade-offs and providing clear examples.",
+            "answer_id": "507f1f77bcf86cd799439013"
+          },
+          {
+            "question_text": "Explain concept 11 in distributed systems.",
+            "user_answer": "Candidate response for question 11 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good response covering key trade-offs and providing clear examples.",
+            "answer_id": "507f1f77bcf86cd799439014"
+          },
+          {
+            "question_text": "Explain concept 12 in distributed systems.",
+            "user_answer": "Candidate response for question 12 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good response covering key trade-offs and providing clear examples.",
+            "answer_id": "507f1f77bcf86cd799439015"
+          },
+          {
+            "question_text": "Explain concept 13 in distributed systems.",
+            "user_answer": "Candidate response for question 13 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good response covering key trade-offs and providing clear examples.",
+            "answer_id": "507f1f77bcf86cd799439016"
+          },
+          {
+            "question_text": "Explain concept 14 in distributed systems.",
+            "user_answer": "Candidate response for question 14 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good response covering key trade-offs and providing clear examples.",
+            "answer_id": "507f1f77bcf86cd799439017"
+          },
+          {
+            "question_text": "Explain concept 15 in distributed systems.",
+            "user_answer": "Candidate response for question 15 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good response covering key trade-offs and providing clear examples.",
+            "answer_id": "507f1f77bcf86cd799439018"
+          },
+          {
+            "question_text": "Explain concept 16 in distributed systems.",
+            "user_answer": "Candidate response for question 16 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good response covering key trade-offs and providing clear examples.",
+            "answer_id": "507f1f77bcf86cd799439019"
+          },
+          {
+            "question_text": "Explain concept 17 in distributed systems.",
+            "user_answer": "Candidate response for question 17 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good response covering key trade-offs and providing clear examples.",
+            "answer_id": "507f1f77bcf86cd79943901a"
+          },
+          {
+            "question_text": "Explain concept 18 in distributed systems.",
+            "user_answer": "Candidate response for question 18 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good response covering key trade-offs and providing clear examples.",
+            "answer_id": "507f1f77bcf86cd79943901b"
+          },
+          {
+            "question_text": "Explain concept 19 in distributed systems.",
+            "user_answer": "Candidate response for question 19 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good response covering key trade-offs and providing clear examples.",
+            "answer_id": "507f1f77bcf86cd79943901c"
+          },
+          {
+            "question_text": "Explain concept 20 in distributed systems.",
+            "user_answer": "Candidate response for question 20 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good response covering key trade-offs and providing clear examples.",
+            "answer_id": "507f1f77bcf86cd79943901d"
+          }
+        ]
+      }
+    },
+    {
+      "condition": "revised_answer_id",
+      "run_index": 7,
+      "metrics": {
+        "run_index": 7,
+        "condition": "revised_answer_id",
+        "api_success": true,
+        "model_question_count": 20,
+        "expected_question_count": 20,
+        "text_join_failures": 0,
+        "silent_zero_score_fallbacks": 0,
+        "wording_changes_in_model_output": 0,
+        "exact_question_text_matches_in_model_output": 20,
+        "scores_preserved_through_association": 20,
+        "scores_lost_through_association": 0,
+        "rejected": false,
+        "duplicate_model_answer_ids": 0,
+        "missing_answer_ids": 0,
+        "unknown_answer_ids": 0,
+        "order_preserved": true
+      },
+      "failure": null,
+      "model_response": {
+        "overall_score": 85,
+        "score_breakdown": {
+          "technical": 85,
+          "communication": 88,
+          "problem_solving": 82,
+          "confidence": 85
+        },
+        "questions": [
+          {
+            "question_text": "Explain concept 1 in distributed systems.",
+            "user_answer": "Candidate response for question 1 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good overview of trade-offs and practical examples provided.",
+            "answer_id": "507f1f77bcf86cd79943900a"
+          },
+          {
+            "question_text": "Explain concept 2 in distributed systems.",
+            "user_answer": "Candidate response for question 2 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Well-explained concept with relevant real-world examples.",
+            "answer_id": "507f1f77bcf86cd79943900b"
+          },
+          {
+            "question_text": "Explain concept 3 in distributed systems.",
+            "user_answer": "Candidate response for question 3 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear discussion of system trade-offs.",
+            "answer_id": "507f1f77bcf86cd79943900c"
+          },
+          {
+            "question_text": "Explain concept 4 in distributed systems.",
+            "user_answer": "Candidate response for question 4 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Demonstrates sound technical understanding.",
+            "answer_id": "507f1f77bcf86cd79943900d"
+          },
+          {
+            "question_text": "Explain concept 5 in distributed systems.",
+            "user_answer": "Candidate response for question 5 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good explanation of architecture choices.",
+            "answer_id": "507f1f77bcf86cd79943900e"
+          },
+          {
+            "question_text": "Explain concept 6 in distributed systems.",
+            "user_answer": "Candidate response for question 6 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Solid insights into key trade-offs.",
+            "answer_id": "507f1f77bcf86cd79943900f"
+          },
+          {
+            "question_text": "Explain concept 7 in distributed systems.",
+            "user_answer": "Candidate response for question 7 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear communication and logical flow.",
+            "answer_id": "507f1f77bcf86cd799439010"
+          },
+          {
+            "question_text": "Explain concept 8 in distributed systems.",
+            "user_answer": "Candidate response for question 8 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Accurate context and appropriate examples.",
+            "answer_id": "507f1f77bcf86cd799439011"
+          },
+          {
+            "question_text": "Explain concept 9 in distributed systems.",
+            "user_answer": "Candidate response for question 9 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Effective explanation of core principles.",
+            "answer_id": "507f1f77bcf86cd799439012"
+          },
+          {
+            "question_text": "Explain concept 10 in distributed systems.",
+            "user_answer": "Candidate response for question 10 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Comprehensive coverage of essential details.",
+            "answer_id": "507f1f77bcf86cd799439013"
+          },
+          {
+            "question_text": "Explain concept 11 in distributed systems.",
+            "user_answer": "Candidate response for question 11 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good balance of theory and practice.",
+            "answer_id": "507f1f77bcf86cd799439014"
+          },
+          {
+            "question_text": "Explain concept 12 in distributed systems.",
+            "user_answer": "Candidate response for question 12 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Well-structured answer addressing trade-offs.",
+            "answer_id": "507f1f77bcf86cd799439015"
+          },
+          {
+            "question_text": "Explain concept 13 in distributed systems.",
+            "user_answer": "Candidate response for question 13 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear explanation with solid examples.",
+            "answer_id": "507f1f77bcf86cd799439016"
+          },
+          {
+            "question_text": "Explain concept 14 in distributed systems.",
+            "user_answer": "Candidate response for question 14 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good technical depth shown.",
+            "answer_id": "507f1f77bcf86cd799439017"
+          },
+          {
+            "question_text": "Explain concept 15 in distributed systems.",
+            "user_answer": "Candidate response for question 15 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Thoughtful analysis of system behavior.",
+            "answer_id": "507f1f77bcf86cd799439018"
+          },
+          {
+            "question_text": "Explain concept 16 in distributed systems.",
+            "user_answer": "Candidate response for question 16 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Appropriate selection of practical trade-offs.",
+            "answer_id": "507f1f77bcf86cd799439019"
+          },
+          {
+            "question_text": "Explain concept 17 in distributed systems.",
+            "user_answer": "Candidate response for question 17 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Logical presentation of trade-off considerations.",
+            "answer_id": "507f1f77bcf86cd79943901a"
+          },
+          {
+            "question_text": "Explain concept 18 in distributed systems.",
+            "user_answer": "Candidate response for question 18 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Solid reasoning behind example scenarios.",
+            "answer_id": "507f1f77bcf86cd79943901b"
+          },
+          {
+            "question_text": "Explain concept 19 in distributed systems.",
+            "user_answer": "Candidate response for question 19 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good conceptual clarity throughout.",
+            "answer_id": "507f1f77bcf86cd79943901c"
+          },
+          {
+            "question_text": "Explain concept 20 in distributed systems.",
+            "user_answer": "Candidate response for question 20 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Strong conclusion with solid examples.",
+            "answer_id": "507f1f77bcf86cd79943901d"
+          }
+        ]
+      }
+    },
+    {
+      "condition": "revised_answer_id",
+      "run_index": 8,
+      "metrics": {
+        "run_index": 8,
+        "condition": "revised_answer_id",
+        "api_success": true,
+        "model_question_count": 20,
+        "expected_question_count": 20,
+        "text_join_failures": 0,
+        "silent_zero_score_fallbacks": 0,
+        "wording_changes_in_model_output": 0,
+        "exact_question_text_matches_in_model_output": 20,
+        "scores_preserved_through_association": 20,
+        "scores_lost_through_association": 0,
+        "rejected": false,
+        "duplicate_model_answer_ids": 0,
+        "missing_answer_ids": 0,
+        "unknown_answer_ids": 0,
+        "order_preserved": true
+      },
+      "failure": null,
+      "model_response": {
+        "overall_score": 8.5,
+        "score_breakdown": {
+          "technical": 8.5,
+          "communication": 8,
+          "problem_solving": 8.5,
+          "confidence": 8
+        },
+        "questions": [
+          {
+            "question_text": "Explain concept 1 in distributed systems.",
+            "user_answer": "Candidate response for question 1 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good overview of concept 1 including trade-offs and practical examples.",
+            "answer_id": "507f1f77bcf86cd79943900a"
+          },
+          {
+            "question_text": "Explain concept 2 in distributed systems.",
+            "user_answer": "Candidate response for question 2 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Well-structured answer demonstrating understanding of trade-offs.",
+            "answer_id": "507f1f77bcf86cd79943900b"
+          },
+          {
+            "question_text": "Explain concept 3 in distributed systems.",
+            "user_answer": "Candidate response for question 3 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear explanation with accurate real-world scenarios.",
+            "answer_id": "507f1f77bcf86cd79943900c"
+          },
+          {
+            "question_text": "Explain concept 4 in distributed systems.",
+            "user_answer": "Candidate response for question 4 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Solid grasp of key mechanisms and architectural trade-offs.",
+            "answer_id": "507f1f77bcf86cd79943900d"
+          },
+          {
+            "question_text": "Explain concept 5 in distributed systems.",
+            "user_answer": "Candidate response for question 5 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Comprehensive answer detailing trade-offs and system impacts.",
+            "answer_id": "507f1f77bcf86cd79943900e"
+          },
+          {
+            "question_text": "Explain concept 6 in distributed systems.",
+            "user_answer": "Candidate response for question 6 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response with effective architectural examples.",
+            "answer_id": "507f1f77bcf86cd79943900f"
+          },
+          {
+            "question_text": "Explain concept 7 in distributed systems.",
+            "user_answer": "Candidate response for question 7 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear breakdown of trade-offs and relevant examples.",
+            "answer_id": "507f1f77bcf86cd799439010"
+          },
+          {
+            "question_text": "Explain concept 8 in distributed systems.",
+            "user_answer": "Candidate response for question 8 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Strong explanation of core trade-offs in distributed design.",
+            "answer_id": "507f1f77bcf86cd799439011"
+          },
+          {
+            "question_text": "Explain concept 9 in distributed systems.",
+            "user_answer": "Candidate response for question 9 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Insightful explanation supported by relevant examples.",
+            "answer_id": "507f1f77bcf86cd799439012"
+          },
+          {
+            "question_text": "Explain concept 10 in distributed systems.",
+            "user_answer": "Candidate response for question 10 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good balance of technical depth and clarity.",
+            "answer_id": "507f1f77bcf86cd799439013"
+          },
+          {
+            "question_text": "Explain concept 11 in distributed systems.",
+            "user_answer": "Candidate response for question 11 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Accurate analysis of trade-offs involved in distributed settings.",
+            "answer_id": "507f1f77bcf86cd799439014"
+          },
+          {
+            "question_text": "Explain concept 12 in distributed systems.",
+            "user_answer": "Candidate response for question 12 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear articulation of system guarantees and trade-offs.",
+            "answer_id": "507f1f77bcf86cd799439015"
+          },
+          {
+            "question_text": "Explain concept 13 in distributed systems.",
+            "user_answer": "Candidate response for question 13 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Well-reasoned answer with solid examples provided.",
+            "answer_id": "507f1f77bcf86cd799439016"
+          },
+          {
+            "question_text": "Explain concept 14 in distributed systems.",
+            "user_answer": "Candidate response for question 14 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good technical explanation covering performance trade-offs.",
+            "answer_id": "507f1f77bcf86cd799439017"
+          },
+          {
+            "question_text": "Explain concept 15 in distributed systems.",
+            "user_answer": "Candidate response for question 15 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear understanding demonstrated through trade-off analysis.",
+            "answer_id": "507f1f77bcf86cd799439018"
+          },
+          {
+            "question_text": "Explain concept 16 in distributed systems.",
+            "user_answer": "Candidate response for question 16 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Solid explanation covering key trade-offs and application contexts.",
+            "answer_id": "507f1f77bcf86cd799439019"
+          },
+          {
+            "question_text": "Explain concept 17 in distributed systems.",
+            "user_answer": "Candidate response for question 17 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Effective response detailing trade-offs and practical scenarios.",
+            "answer_id": "507f1f77bcf86cd79943901a"
+          },
+          {
+            "question_text": "Explain concept 18 in distributed systems.",
+            "user_answer": "Candidate response for question 18 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Well-rounded answer illustrating key trade-offs clearly.",
+            "answer_id": "507f1f77bcf86cd79943901b"
+          },
+          {
+            "question_text": "Explain concept 19 in distributed systems.",
+            "user_answer": "Candidate response for question 19 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good technical depth shown when discussing system trade-offs.",
+            "answer_id": "507f1f77bcf86cd79943901c"
+          },
+          {
+            "question_text": "Explain concept 20 in distributed systems.",
+            "user_answer": "Candidate response for question 20 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Clear and consistent analysis of distributed systems trade-offs.",
+            "answer_id": "507f1f77bcf86cd79943901d"
+          }
+        ]
+      }
+    },
+    {
+      "condition": "revised_answer_id",
+      "run_index": 9,
+      "metrics": {
+        "run_index": 9,
+        "condition": "revised_answer_id",
+        "api_success": true,
+        "model_question_count": 20,
+        "expected_question_count": 20,
+        "text_join_failures": 0,
+        "silent_zero_score_fallbacks": 0,
+        "wording_changes_in_model_output": 0,
+        "exact_question_text_matches_in_model_output": 20,
+        "scores_preserved_through_association": 20,
+        "scores_lost_through_association": 0,
+        "rejected": false,
+        "duplicate_model_answer_ids": 0,
+        "missing_answer_ids": 0,
+        "unknown_answer_ids": 0,
+        "order_preserved": true
+      },
+      "failure": null,
+      "model_response": {
+        "overall_score": 8.5,
+        "score_breakdown": {
+          "technical": 8.5,
+          "communication": 8,
+          "problem_solving": 8.5,
+          "confidence": 8.5
+        },
+        "questions": [
+          {
+            "question_text": "Explain concept 1 in distributed systems.",
+            "user_answer": "Candidate response for question 1 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response covering relevant trade-offs and practical examples clearly.",
+            "answer_id": "507f1f77bcf86cd79943900a"
+          },
+          {
+            "question_text": "Explain concept 2 in distributed systems.",
+            "user_answer": "Candidate response for question 2 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response covering relevant trade-offs and practical examples clearly.",
+            "answer_id": "507f1f77bcf86cd79943900b"
+          },
+          {
+            "question_text": "Explain concept 3 in distributed systems.",
+            "user_answer": "Candidate response for question 3 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response covering relevant trade-offs and practical examples clearly.",
+            "answer_id": "507f1f77bcf86cd79943900c"
+          },
+          {
+            "question_text": "Explain concept 4 in distributed systems.",
+            "user_answer": "Candidate response for question 4 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response covering relevant trade-offs and practical examples clearly.",
+            "answer_id": "507f1f77bcf86cd79943900d"
+          },
+          {
+            "question_text": "Explain concept 5 in distributed systems.",
+            "user_answer": "Candidate response for question 5 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response covering relevant trade-offs and practical examples clearly.",
+            "answer_id": "507f1f77bcf86cd79943900e"
+          },
+          {
+            "question_text": "Explain concept 6 in distributed systems.",
+            "user_answer": "Candidate response for question 6 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response covering relevant trade-offs and practical examples clearly.",
+            "answer_id": "507f1f77bcf86cd79943900f"
+          },
+          {
+            "question_text": "Explain concept 7 in distributed systems.",
+            "user_answer": "Candidate response for question 7 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response covering relevant trade-offs and practical examples clearly.",
+            "answer_id": "507f1f77bcf86cd799439010"
+          },
+          {
+            "question_text": "Explain concept 8 in distributed systems.",
+            "user_answer": "Candidate response for question 8 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response covering relevant trade-offs and practical examples clearly.",
+            "answer_id": "507f1f77bcf86cd799439011"
+          },
+          {
+            "question_text": "Explain concept 9 in distributed systems.",
+            "user_answer": "Candidate response for question 9 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response covering relevant trade-offs and practical examples clearly.",
+            "answer_id": "507f1f77bcf86cd799439012"
+          },
+          {
+            "question_text": "Explain concept 10 in distributed systems.",
+            "user_answer": "Candidate response for question 10 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response covering relevant trade-offs and practical examples clearly.",
+            "answer_id": "507f1f77bcf86cd799439013"
+          },
+          {
+            "question_text": "Explain concept 11 in distributed systems.",
+            "user_answer": "Candidate response for question 11 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response covering relevant trade-offs and practical examples clearly.",
+            "answer_id": "507f1f77bcf86cd799439014"
+          },
+          {
+            "question_text": "Explain concept 12 in distributed systems.",
+            "user_answer": "Candidate response for question 12 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response covering relevant trade-offs and practical examples clearly.",
+            "answer_id": "507f1f77bcf86cd799439015"
+          },
+          {
+            "question_text": "Explain concept 13 in distributed systems.",
+            "user_answer": "Candidate response for question 13 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response covering relevant trade-offs and practical examples clearly.",
+            "answer_id": "507f1f77bcf86cd799439016"
+          },
+          {
+            "question_text": "Explain concept 14 in distributed systems.",
+            "user_answer": "Candidate response for question 14 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response covering relevant trade-offs and practical examples clearly.",
+            "answer_id": "507f1f77bcf86cd799439017"
+          },
+          {
+            "question_text": "Explain concept 15 in distributed systems.",
+            "user_answer": "Candidate response for question 15 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response covering relevant trade-offs and practical examples clearly.",
+            "answer_id": "507f1f77bcf86cd799439018"
+          },
+          {
+            "question_text": "Explain concept 16 in distributed systems.",
+            "user_answer": "Candidate response for question 16 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response covering relevant trade-offs and practical examples clearly.",
+            "answer_id": "507f1f77bcf86cd799439019"
+          },
+          {
+            "question_text": "Explain concept 17 in distributed systems.",
+            "user_answer": "Candidate response for question 17 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response covering relevant trade-offs and practical examples clearly.",
+            "answer_id": "507f1f77bcf86cd79943901a"
+          },
+          {
+            "question_text": "Explain concept 18 in distributed systems.",
+            "user_answer": "Candidate response for question 18 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response covering relevant trade-offs and practical examples clearly.",
+            "answer_id": "507f1f77bcf86cd79943901b"
+          },
+          {
+            "question_text": "Explain concept 19 in distributed systems.",
+            "user_answer": "Candidate response for question 19 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response covering relevant trade-offs and practical examples clearly.",
+            "answer_id": "507f1f77bcf86cd79943901c"
+          },
+          {
+            "question_text": "Explain concept 20 in distributed systems.",
+            "user_answer": "Candidate response for question 20 covering trade-offs and examples.",
+            "score": 85,
+            "feedback": "Good response covering relevant trade-offs and practical examples clearly.",
+            "answer_id": "507f1f77bcf86cd79943901d"
+          }
+        ]
+      }
+    },
+    {
+      "condition": "revised_answer_id",
+      "run_index": 10,
+      "metrics": {
+        "run_index": 10,
+        "condition": "revised_answer_id",
+        "api_success": true,
+        "model_question_count": 20,
+        "expected_question_count": 20,
+        "text_join_failures": 0,
+        "silent_zero_score_fallbacks": 0,
+        "wording_changes_in_model_output": 0,
+        "exact_question_text_matches_in_model_output": 20,
+        "scores_preserved_through_association": 20,
+        "scores_lost_through_association": 0,
+        "rejected": false,
+        "duplicate_model_answer_ids": 0,
+        "missing_answer_ids": 0,
+        "unknown_answer_ids": 0,
+        "order_preserved": true
+      },
+      "failure": null,
+      "model_response": {
+        "overall_score": 8.5,
+        "score_breakdown": {
+          "technical": 8.5,
+          "communication": 8.5,
+          "problem_solving": 8,
+          "confidence": 8.5
+        },
+        "questions": [
+          {
+            "question_text": "Explain concept 1 in distributed systems.",
+            "user_answer": "Candidate response for question 1 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good explanation covering core trade-offs and relevant examples.",
+            "answer_id": "507f1f77bcf86cd79943900a"
+          },
+          {
+            "question_text": "Explain concept 2 in distributed systems.",
+            "user_answer": "Candidate response for question 2 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Well-structured answer demonstrating a solid understanding of system design trade-offs.",
+            "answer_id": "507f1f77bcf86cd79943900b"
+          },
+          {
+            "question_text": "Explain concept 3 in distributed systems.",
+            "user_answer": "Candidate response for question 3 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear overview of concepts with appropriate examples provided.",
+            "answer_id": "507f1f77bcf86cd79943900c"
+          },
+          {
+            "question_text": "Explain concept 4 in distributed systems.",
+            "user_answer": "Candidate response for question 4 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Accurate discussion of trade-offs and distributed systems principles.",
+            "answer_id": "507f1f77bcf86cd79943900d"
+          },
+          {
+            "question_text": "Explain concept 5 in distributed systems.",
+            "user_answer": "Candidate response for question 5 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good depth in explaining real-world trade-offs and practical applications.",
+            "answer_id": "507f1f77bcf86cd79943900e"
+          },
+          {
+            "question_text": "Explain concept 6 in distributed systems.",
+            "user_answer": "Candidate response for question 6 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear explanation with sufficient technical context and examples.",
+            "answer_id": "507f1f77bcf86cd79943900f"
+          },
+          {
+            "question_text": "Explain concept 7 in distributed systems.",
+            "user_answer": "Candidate response for question 7 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Solid answer addressing core challenges and balance in distributed architectures.",
+            "answer_id": "507f1f77bcf86cd799439010"
+          },
+          {
+            "question_text": "Explain concept 8 in distributed systems.",
+            "user_answer": "Candidate response for question 8 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Effective explanation of trade-offs with concrete examples.",
+            "answer_id": "507f1f77bcf86cd799439011"
+          },
+          {
+            "question_text": "Explain concept 9 in distributed systems.",
+            "user_answer": "Candidate response for question 9 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Demonstrates strong awareness of distributed constraints and trade-offs.",
+            "answer_id": "507f1f77bcf86cd799439012"
+          },
+          {
+            "question_text": "Explain concept 10 in distributed systems.",
+            "user_answer": "Candidate response for question 10 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Well-articulated explanation highlighting appropriate balance and examples.",
+            "answer_id": "507f1f77bcf86cd799439013"
+          },
+          {
+            "question_text": "Explain concept 11 in distributed systems.",
+            "user_answer": "Candidate response for question 11 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good analysis of practical scenarios and system trade-offs.",
+            "answer_id": "507f1f77bcf86cd799439014"
+          },
+          {
+            "question_text": "Explain concept 12 in distributed systems.",
+            "user_answer": "Candidate response for question 12 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear insights into distributed architecture trade-offs.",
+            "answer_id": "507f1f77bcf86cd799439015"
+          },
+          {
+            "question_text": "Explain concept 13 in distributed systems.",
+            "user_answer": "Candidate response for question 13 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Strong response addressing trade-offs and realistic examples.",
+            "answer_id": "507f1f77bcf86cd799439016"
+          },
+          {
+            "question_text": "Explain concept 14 in distributed systems.",
+            "user_answer": "Candidate response for question 14 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Comprehensive coverage of key system design parameters.",
+            "answer_id": "507f1f77bcf86cd799439017"
+          },
+          {
+            "question_text": "Explain concept 15 in distributed systems.",
+            "user_answer": "Candidate response for question 15 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Clear understanding demonstrated through relevant examples.",
+            "answer_id": "507f1f77bcf86cd799439018"
+          },
+          {
+            "question_text": "Explain concept 16 in distributed systems.",
+            "user_answer": "Candidate response for question 16 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Solid explanation of core mechanics and design trade-offs.",
+            "answer_id": "507f1f77bcf86cd799439019"
+          },
+          {
+            "question_text": "Explain concept 17 in distributed systems.",
+            "user_answer": "Candidate response for question 17 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Good structure and logical explanation of key trade-offs.",
+            "answer_id": "507f1f77bcf86cd79943901a"
+          },
+          {
+            "question_text": "Explain concept 18 in distributed systems.",
+            "user_answer": "Candidate response for question 18 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Accurate details provided on trade-offs and operational risks.",
+            "answer_id": "507f1f77bcf86cd79943901b"
+          },
+          {
+            "question_text": "Explain concept 19 in distributed systems.",
+            "user_answer": "Candidate response for question 19 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Well-rounded answer covering trade-offs effectively.",
+            "answer_id": "507f1f77bcf86cd79943901c"
+          },
+          {
+            "question_text": "Explain concept 20 in distributed systems.",
+            "user_answer": "Candidate response for question 20 covering trade-offs and examples.",
+            "score": 8.5,
+            "feedback": "Solid conclusion to the evaluation, showing consistent technical communication.",
+            "answer_id": "507f1f77bcf86cd79943901d"
+          }
+        ]
+      }
+    }
+  ]
+}

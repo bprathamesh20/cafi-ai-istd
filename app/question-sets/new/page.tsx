@@ -58,8 +58,8 @@ export default function NewQuestionSetPage() {
       }
 
       router.push('/question-sets');
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {
       setIsSubmitting(false);
     }

@@ -1,0 +1,3 @@
+condition,runs_requested,runs_api_success,runs_api_failed,runs_rejected,total_text_join_failures,total_silent_zero_score_fallbacks,total_wording_changes,total_exact_question_text_matches,total_scores_preserved,total_scores_lost,total_missing_answer_ids,total_unknown_answer_ids,total_duplicate_model_answer_ids
+baseline_text,10,10,0,0,0,0,0,200,200,0,0,0,0
+revised_answer_id,10,10,0,0,0,0,0,200,200,0,0,0,0
